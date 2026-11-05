@@ -1,0 +1,126 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { Camera, X, MessageCircle, ArrowRight, MapPin, Mail } from "lucide-react";
+
+const footerLinks = [
+  { label: "Home", href: "/" },
+  { label: "About the Event", href: "/about" },
+  { label: "Speakers & Panelists", href: "/speakers" },
+  { label: "Call for Sponsors", href: "/sponsors" },
+  { label: "Register to Attend", href: "/register" },
+  { label: "Contact Us", href: "/contact" },
+];
+
+const socials = [
+  { Icon: Camera, label: "Instagram", href: "https://instagram.com/elevatehub" },
+  { Icon: X, label: "Twitter / X", href: "https://twitter.com/elevatehub" },
+  { Icon: MessageCircle, label: "WhatsApp Inquiry", href: "https://wa.me/2348100801513" },
+  { Icon: Mail, label: "roundtable@elevatehub.com", href: "mailto:roundtable@elevatehub.com" },
+];
+
+export default function Footer() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
+
+  return (
+    <footer className="bg-neutral-950 text-white border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="py-14 grid md:grid-cols-3 gap-10 border-b border-white/10">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2.5 mb-4">
+              <Image
+                src="/vantage-logo-clean.png"
+                alt="Vantage Forum Logo"
+                width={165}
+                height={52}
+                unoptimized
+                className="h-11 w-auto object-contain"
+              />
+            </div>
+            <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
+              <strong>Vantage Forum</strong> hosts the premier Ibadan Business Roundtable for business owners, founders, SME leaders, and investors in Ibadan and its environs — driving sustainable growth, capital access, and high-value partnerships.
+            </p>
+            <div className="flex items-start gap-2 text-xs text-neutral-400 mt-4">
+              <MapPin size={14} className="text-secondary flex-shrink-0 mt-0.5" />
+              <span>PISTIS HUB, The Elevation Church, Mobil, Ring Road, Ibadan</span>
+            </div>
+            <p className="text-primary font-semibold text-sm mt-3 italic">
+              Connect. Scale. Transform Ibadan.
+            </p>
+          </div>
+
+          {/* Links */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">
+              Quick Navigation
+            </h4>
+            <ul className="space-y-2">
+              {footerLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-neutral-300 hover:text-primary text-sm transition-colors flex items-center gap-1.5 group"
+                  >
+                    <ArrowRight
+                      size={12}
+                      className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-secondary"
+                    />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Social & CTAs */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">
+              Connect & Partner
+            </h4>
+            <div className="flex flex-col gap-3">
+              {socials.map(({ Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 text-neutral-300 hover:text-white text-sm transition-colors group"
+                >
+                  <div className="w-7 h-7 bg-neutral-900 border border-white/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                    <Icon size={14} />
+                  </div>
+                  <span>{label}</span>
+                </a>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              <Link
+                href="/register"
+                className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-primary-dark transition-colors"
+              >
+                Register Seat <ArrowRight size={14} />
+              </Link>
+              <Link
+                href="/sponsors"
+                className="inline-flex items-center gap-2 bg-secondary text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-secondary-dark transition-colors"
+              >
+                Sponsor Event
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-neutral-500 text-xs">
+          <p>© {new Date().getFullYear()} Vantage Forum — Ibadan Business Roundtable</p>
+          <p>Built for Business Leaders & Entrepreneurs across Ibadan & Environs</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
