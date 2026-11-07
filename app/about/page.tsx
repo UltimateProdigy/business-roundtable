@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Target, Handshake, TrendingUp, ShieldCheck, MapPin, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About — Vantage Forum · Ibadan Business Roundtable",
+  title: "About — Ibadan Business Roundtable",
 };
 
 const pillars = [
@@ -67,10 +67,10 @@ export default function AboutPage() {
                   could triple their output.
                 </p>
                 <p>
-                  The <strong>Ibadan Business Roundtable</strong> by{" "}
-                  <strong>Vantage Forum</strong> was created to close that gap — bringing
-                  300+ decision-makers into one room for candid strategy, B2B matchmaking,
-                  and actionable growth.
+                  The <strong>Ibadan Business Roundtable</strong> hosted by{" "}
+                  <strong>The Elevation Church, Ibadan</strong> was created to close that
+                  gap — bringing 300+ decision-makers into one room for candid strategy,
+                  B2B matchmaking, and actionable growth.
                 </p>
               </div>
             </div>

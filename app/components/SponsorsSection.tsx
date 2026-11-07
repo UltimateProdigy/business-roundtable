@@ -178,9 +178,9 @@ export default function SponsorsSection() {
             <span className="text-primary">Ibadan&apos;s Decision Makers</span>
           </h2>
           <p className="text-slate-500 text-lg leading-relaxed">
-            Partner with Vantage Forum at the Ibadan Business Roundtable to position
-            your bank, fintech, real estate firm, telecom, logistics company, or
-            enterprise brand directly before 300+ verified business owners and CEOs.
+            Partner with the Ibadan Business Roundtable to position your bank,
+            fintech, real estate firm, telecom, logistics company, or enterprise
+            brand directly before 300+ verified business owners and CEOs.
           </p>
         </div>
 

@@ -50,27 +50,39 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16 gap-6">
           {/* ── Logo (left) ── */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-            <Image
-              src="/logo-icon-clean.png"
-              alt="The Elevation Church — Ibadan Round Table Logo"
-              width={36}
-              height={36}
-              unoptimized
-              className="group-hover:scale-105 transition-transform duration-300"
-            />
-            <span
-              className={`text-lg tracking-tight transition-colors duration-300 font-semibold ${
-                isGlass ? "text-white" : "text-slate-800"
-              }`}
-              style={{ fontFamily: "'Outfit', sans-serif" }}
-            >
-              ibadan
-              <span className={isGlass ? "text-secondary" : "text-primary"}>·</span>
-              <span className={isGlass ? "text-secondary" : "text-primary"}>
-                round table
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
+            <div className="relative flex items-center justify-center">
+              <Image
+                src="/logo-icon-clean.png"
+                alt="Ibadan Business Roundtable Logo"
+                width={38}
+                height={38}
+                unoptimized
+                className="group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="flex flex-col leading-none">
+              <span
+                className={`text-[15px] sm:text-base font-extrabold tracking-tight transition-colors duration-300 ${
+                  isGlass ? "text-white" : "text-slate-900"
+                }`}
+              >
+                Ibadan{" "}
+                <span className={isGlass ? "text-primary" : "text-primary"}>
+                  Business
+                </span>
               </span>
-            </span>
+              <span className="flex items-center gap-1.5 mt-1">
+                <span className="w-3 h-[2px] rounded-full bg-secondary" />
+                <span
+                  className={`text-[10px] font-extrabold uppercase tracking-[0.22em] ${
+                    isGlass ? "text-secondary" : "text-secondary-dark"
+                  }`}
+                >
+                  Roundtable
+                </span>
+              </span>
+            </div>
           </Link>
 
           {/* ── Nav Links (center) ── */}

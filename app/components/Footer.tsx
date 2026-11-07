@@ -32,21 +32,25 @@ export default function Footer() {
         <div className="py-14 grid md:grid-cols-3 gap-10 border-b border-white/10">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
+            <div className="flex items-center gap-3 mb-4">
               <Image
                 src="/logo-icon-clean.png"
-                alt="The Elevation Church — Ibadan Round Table Logo"
-                width={40}
-                height={40}
+                alt="Ibadan Business Roundtable Logo"
+                width={42}
+                height={42}
                 unoptimized
               />
-              <span
-                className="text-xl tracking-tight font-semibold"
-                style={{ fontFamily: "'Outfit', sans-serif" }}
-              >
-                ibadan<span className="text-secondary">·</span>
-                <span className="text-secondary">round table</span>
-              </span>
+              <div className="flex flex-col leading-none">
+                <span className="text-lg font-extrabold tracking-tight text-white">
+                  Ibadan <span className="text-primary">Business</span>
+                </span>
+                <span className="flex items-center gap-1.5 mt-1">
+                  <span className="w-3.5 h-[2px] rounded-full bg-secondary" />
+                  <span className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-secondary">
+                    Roundtable
+                  </span>
+                </span>
+              </div>
             </div>
             <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
               Hosted by <strong>The Elevation Church, Ibadan</strong>, the Ibadan Business Roundtable brings together business owners, founders, SME leaders, and investors in Ibadan and its environs — driving sustainable growth, wealth creation, and global opportunities.
@@ -129,7 +133,7 @@ export default function Footer() {
         </div>
 
         <div className="py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-neutral-500 text-xs">
-          <p>© {new Date().getFullYear()} Vantage Forum — Ibadan Business Roundtable</p>
+          <p>© {new Date().getFullYear()} Ibadan Business Roundtable — The Elevation Church, Ibadan</p>
           <p>Built for Business Leaders & Entrepreneurs across Ibadan & Environs</p>
         </div>
       </div>

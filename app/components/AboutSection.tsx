@@ -9,7 +9,7 @@ export default function AboutSection() {
           {/* Left */}
           <div>
             <span className="inline-block text-secondary text-sm font-bold uppercase tracking-widest mb-4">
-              About Vantage Forum
+              About Ibadan Business Roundtable
             </span>
             <h2 className="text-4xl sm:text-5xl text-slate-900 leading-tight mb-6">
               Shaping the Future of{" "}
@@ -17,7 +17,7 @@ export default function AboutSection() {
             </h2>
             <div className="space-y-4 text-slate-600 text-lg leading-relaxed">
               <p>
-                Hosted by <strong>Vantage Forum</strong>, the{" "}
+                Hosted by <strong>The Elevation Church, Ibadan</strong>, the{" "}
                 <strong>Ibadan Business Roundtable</strong> is a high-level interactive
                 summit designed specifically for business owners, founders, merchants, and
                 enterprise leaders operating in Ibadan and surrounding towns across Oyo
@@ -93,7 +93,7 @@ export default function AboutSection() {
                   economy rises.&rdquo;
                 </p>
                 <p className="text-xs font-bold mt-3 text-secondary-light uppercase tracking-wider">
-                  — Vantage Forum · Ibadan Business Roundtable
+                  — Ibadan Business Roundtable · The Elevation Church, Ibadan
                 </p>
               </div>
             </div>

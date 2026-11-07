@@ -3,7 +3,7 @@ import PageHeader from "../components/PageHeader";
 import SpeakersSection from "../components/SpeakersSection";
 
 export const metadata: Metadata = {
-  title: "Speakers — Vantage Forum · Ibadan Business Roundtable",
+  title: "Speakers — Ibadan Business Roundtable",
 };
 
 export default function SpeakersPage() {

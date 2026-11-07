@@ -42,7 +42,7 @@ const perks = [
     Icon: Users,
     title: "Ibadan Founders Network",
     description:
-      "Gain year-round membership in the Vantage Forum Business Owners Network for ongoing peer advisory, referrals, and quarterly executive meetups.",
+      "Connect with fellow entrepreneurs in the Ibadan Business Roundtable community for ongoing peer advisory, referrals, and commercial collaborations.",
   },
 ];
 
