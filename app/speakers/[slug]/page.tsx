@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Mic, MapPin } from "lucide-react";
 import { speakersList } from "../../components/SpeakersSection";
+
+const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=The+Elevation+Church+Mobil+Ring+Road+Energy+Switch+Filling+Station+Ibadan";
 
 export function generateStaticParams() {
   return speakersList.map((speaker) => ({
@@ -19,7 +22,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const speaker = speakersList.find((s) => s.slug === slug);
   if (!speaker) {
-    return { title: "Speaker Not Found — Vantage Forum" };
+    return { title: "Speaker Not Found — Ibadan Business Roundtable" };
   }
   return {
     title: `${speaker.name} — Speaker Profile | Ibadan Business Roundtable`,
@@ -66,7 +69,7 @@ export default async function SpeakerDetailPage({
           <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/40 rounded-full px-3.5 py-1 mb-3 ml-4">
             <span className="w-2 h-2 rounded-full bg-secondary" />
             <span className="text-white text-xs font-semibold uppercase tracking-widest">
-              Speaker Profile
+              {speaker.isHost ? "Chief Host Profile" : "Speaker Profile"}
             </span>
           </div>
 
@@ -103,20 +106,35 @@ export default async function SpeakerDetailPage({
                   </p>
                   <div className="flex items-center gap-2 text-xs text-slate-500 mb-6">
                     <CheckCircle2 size={15} className="text-secondary flex-shrink-0" />
-                    <span>Featured Speaker · Ibadan Business Roundtable 2026</span>
+                    <span>
+                      {speaker.isHost ? "Chief Host" : "Featured Speaker"} · Ibadan Business Roundtable 2026
+                    </span>
                   </div>
                   <Link
                     href="/register"
                     className="w-full inline-flex items-center justify-center gap-2 bg-primary text-white py-3.5 px-6 rounded-xl font-bold text-sm hover:bg-primary-dark transition-all shadow-md shadow-primary/20"
                   >
-                    Register to Attend Session <ArrowRight size={16} />
+                    Register Now <ArrowRight size={16} />
                   </Link>
                 </div>
               </div>
             </div>
 
-            {/* Right 7 Columns: Full Biography */}
+            {/* Right 7 Columns: Talk Title + Full Biography */}
             <div className="lg:col-span-7">
+              {/* First Line Above Profile: Title of Their Talk at the Event */}
+              {speaker.talkTitle && (
+                <div className="bg-gradient-to-r from-primary-light/80 to-secondary-light/60 border-l-4 border-primary rounded-r-2xl p-5 sm:p-6 mb-8">
+                  <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-secondary-dark mb-1.5">
+                    <Mic size={14} className="text-secondary" />
+                    <span>Session / Talk Title at the Event</span>
+                  </div>
+                  <p className="text-lg sm:text-xl font-extrabold text-slate-900 leading-snug">
+                    &ldquo;{speaker.talkTitle}&rdquo;
+                  </p>
+                </div>
+              )}
+
               <span className="inline-block text-secondary text-xs font-bold uppercase tracking-widest mb-3">
                 Biography & Background
               </span>
@@ -134,20 +152,28 @@ export default async function SpeakerDetailPage({
               <div className="mt-12 bg-slate-50 rounded-3xl p-7 sm:p-8 border border-slate-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-widest text-secondary">
-                    Vantage Forum · Ibadan
+                    GLOBAL READY · 5th December 2026 · 10:00 AM
                   </span>
                   <h3 className="text-2xl text-slate-900 mt-1">
                     Connect with {speaker.name.split(" ")[0]} at the Roundtable
                   </h3>
-                  <p className="text-sm text-slate-500 mt-1">
-                    5th December 2026 · 10:00 AM · PISTIS HUB, The Elevation Church, Mobil, Ring Road, Ibadan
-                  </p>
+                  <a
+                    href={GOOGLE_MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-primary mt-1.5 font-medium"
+                  >
+                    <MapPin size={15} className="text-secondary flex-shrink-0" />
+                    <span>
+                      PISTIS HUB, The Elevation Church, Mobil, Ring Road, Ibadan (Landmark: Energy Switch Filling Station)
+                    </span>
+                  </a>
                 </div>
                 <Link
                   href="/register"
                   className="bg-secondary text-white px-6 py-3.5 rounded-xl text-sm font-bold hover:bg-secondary-dark transition-all flex-shrink-0"
                 >
-                  Reserve Seat →
+                  Register Now →
                 </Link>
               </div>
             </div>

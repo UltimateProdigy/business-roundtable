@@ -35,7 +35,7 @@ export default function AboutSection() {
                 href="/register"
                 className="bg-primary text-white px-7 py-3.5 rounded-xl font-bold hover:bg-primary-dark transition-all hover:shadow-lg hover:shadow-primary/25"
               >
-                Reserve Your Seat
+                Register Now
               </Link>
               <Link
                 href="/sponsors"

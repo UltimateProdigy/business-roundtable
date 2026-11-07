@@ -183,7 +183,7 @@ export default function AboutPage() {
                 href="/register"
                 className="bg-primary text-white px-8 py-4 rounded-xl font-bold hover:bg-primary-dark transition-all"
               >
-                Register Your Business Now
+                Register Now
               </Link>
               <Link
                 href="/sponsors"

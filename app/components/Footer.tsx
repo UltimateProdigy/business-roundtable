@@ -46,10 +46,17 @@ export default function Footer() {
             <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
               <strong>Vantage Forum</strong> hosts the premier Ibadan Business Roundtable for business owners, founders, SME leaders, and investors in Ibadan and its environs — driving sustainable growth, capital access, and high-value partnerships.
             </p>
-            <div className="flex items-start gap-2 text-xs text-neutral-400 mt-4">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=The+Elevation+Church+Mobil+Ring+Road+Energy+Switch+Filling+Station+Ibadan"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-2 text-xs text-neutral-400 hover:text-primary transition-colors mt-4"
+            >
               <MapPin size={14} className="text-secondary flex-shrink-0 mt-0.5" />
-              <span>PISTIS HUB, The Elevation Church, Mobil, Ring Road, Ibadan</span>
-            </div>
+              <span>
+                PISTIS HUB, The Elevation Church, Mobil, Ring Road, Ibadan (Landmark: Energy Switch Filling Station)
+              </span>
+            </a>
             <p className="text-primary font-semibold text-sm mt-3 italic">
               Connect. Scale. Transform Ibadan.
             </p>

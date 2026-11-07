@@ -19,58 +19,48 @@ import { supabase } from "@/lib/supabase";
 
 export const sponsorTiers = [
   {
-    name: "Headline / Platinum Partner",
-    price: "₦1,000,000",
-    badge: "Exclusive — 2 Slots",
-    Icon: Crown,
-    featured: true,
-    perks: [
-      "Co-branding as 'Ibadan Business Roundtable Powered by [Your Brand]'",
-      "15-Minute Keynote / Executive Product Spotlight on the main stage",
-      "Prime double-sized Exhibition Booth at the main entrance",
-      "Full logo placement on all backdrops, stage banners, tags & media PR",
-      "Direct access to B2B Deal Room + 5 VIP Executive Lunch passes",
-      "Dedicated email & WhatsApp spotlight to 500+ registered business owners",
-    ],
-  },
-  {
     name: "Gold Partner",
-    price: "₦500,000",
-    badge: "High Impact — 4 Slots",
+    price: "₦10,000",
+    badge: "Brand Visibility",
     Icon: Award,
     featured: false,
     perks: [
-      "Seat on an Industry Panel or 7-minute Sponsor Pitch Session",
-      "Premium Exhibition Booth in the Networking & Deal Room Hall",
-      "Prominent logo placement on event website, backdrop & brochure",
-      "Inclusion of branded promotional materials inside delegate folders",
-      "3 VIP Executive Lunch passes with speakers & investors",
+      "Business logo featured on the event backdrop.",
     ],
   },
   {
     name: "Silver Partner",
-    price: "₦250,000",
-    badge: "Growth Partner",
-    Icon: Sparkles,
-    featured: false,
-    perks: [
-      "2-minute Brand Recognition & Spotlight by the Host",
-      "Standard Exhibition Table to showcase products or services",
-      "Logo featured on event website, digital flyers & roll-up banners",
-      "2 VIP Executive Lunch passes",
-    ],
-  },
-  {
-    name: "Exhibition Booth Partner",
-    price: "₦100,000",
-    badge: "SME Showcase",
+    price: "₦20,000",
+    badge: "Exhibition + Logo",
     Icon: Store,
     featured: false,
     perks: [
-      "Dedicated Exhibition Stand in the B2B Marketplace area",
-      "Direct sales & lead generation with 300+ Ibadan business owners",
-      "Brand listing in the official Ibadan Business Directory",
-      "1 VIP Executive Pass included",
+      "Business logo featured on the event backdrop.",
+      "Exhibition/brand display space at the event.",
+    ],
+  },
+  {
+    name: "Platinum Partner",
+    price: "₦50,000",
+    badge: "Video Spotlight",
+    Icon: Sparkles,
+    featured: false,
+    perks: [
+      "Business logo featured on the event backdrop.",
+      "Exhibition/brand display space at the event.",
+      "3-minute brand presentation video to attendees.",
+    ],
+  },
+  {
+    name: "Diamond Partner",
+    price: "₦100,000",
+    badge: "Top Tier Impact",
+    Icon: Crown,
+    featured: true,
+    perks: [
+      "A bigger business logo featured on the event backdrop.",
+      "Exhibition/brand display space at the event.",
+      "5-minute in-person brand presentation to attendees.",
     ],
   },
 ];
@@ -82,7 +72,7 @@ const SPONSOR_BANK_DETAILS = {
 };
 
 export default function SponsorsSection() {
-  const [selectedTier, setSelectedTier] = useState("Gold Partner (₦500,000)");
+  const [selectedTier, setSelectedTier] = useState("Diamond Partner (₦100,000)");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const [submittedSponsor, setSubmittedSponsor] = useState<null | {
@@ -468,20 +458,17 @@ export default function SponsorsSection() {
                       onChange={(e) => setSelectedTier(e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm font-semibold text-primary-dark focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
                     >
-                      <option value="Headline / Platinum Partner (₦1,000,000)">
-                        Headline / Platinum Partner (₦1,000,000)
+                      <option value="Gold Partner (₦10,000)">
+                        Gold Partner (₦10,000)
                       </option>
-                      <option value="Gold Partner (₦500,000)">
-                        Gold Partner (₦500,000)
+                      <option value="Silver Partner (₦20,000)">
+                        Silver Partner (₦20,000)
                       </option>
-                      <option value="Silver Partner (₦250,000)">
-                        Silver Partner (₦250,000)
+                      <option value="Platinum Partner (₦50,000)">
+                        Platinum Partner (₦50,000)
                       </option>
-                      <option value="Exhibition Booth Partner (₦100,000)">
-                        Exhibition Booth Partner (₦100,000)
-                      </option>
-                      <option value="Custom / Media / Ecosystem Partnership">
-                        Custom / Media / Ecosystem Partnership
+                      <option value="Diamond Partner (₦100,000)">
+                        Diamond Partner (₦100,000)
                       </option>
                     </select>
                   </div>

@@ -1,22 +1,40 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mic } from "lucide-react";
 
 export interface Speaker {
   slug: string;
   name: string;
   role: string;
   image: string;
+  isHost?: boolean;
+  talkTitle?: string;
   shortBio: string;
   fullBio: string[];
 }
 
 export const speakersList: Speaker[] = [
   {
+    slug: "seun-afolayan",
+    name: "Pastor Seun Afolayan",
+    role: "Host · Resident Pastor, The Elevation Church, Ibadan",
+    image: "/seun-afolayan.jpg",
+    isHost: true,
+    talkTitle: "Host & Convener Address — Global Ready: Scaling Businesses, Building Wealth, Expanding Opportunities",
+    shortBio:
+      "Pastor Seun Afolayan serves as the Resident Pastor of The Elevation Church, Ibadan, and is the Host of the Ibadan Business Roundtable. Passionate about raising Kingdom-minded leaders and empowering entrepreneurs to build globally competitive enterprises, he convenes business owners across Oyo State for strategic growth, wealth creation, and marketplace impact.",
+    fullBio: [
+      "Pastor Seun Afolayan serves as the Resident Pastor of The Elevation Church, Ibadan, and is the Host of the Ibadan Business Roundtable.",
+      "With a deep commitment to raising leaders who excel across both ministry and the marketplace, he champions initiatives that equip entrepreneurs, professionals, and SME founders in Ibadan and its environs with the mindset, networks, and strategic insight required to scale globally competitive businesses.",
+      "Through the Ibadan Business Roundtable (themed 'GLOBAL READY: Scaling Businesses, Building Wealth, Expanding Opportunities'), Pastor Seun Afolayan brings together seasoned industry executives, economists, finance coaches, and innovators to catalyze sustainable wealth creation and expand commercial opportunities across Oyo State.",
+    ],
+  },
+  {
     slug: "tosin-praise-fowowe",
     name: "Tosin Praise-Fowowe",
     role: "Finance Coach & Lead Consultant, TPF Consulting Services",
     image: "/tosin-praise-fowowe.jpg",
+    talkTitle: "Financial Structure, Wealth Creation & Sustainable Business Finance",
     shortBio:
       "Tosin Praise-Fowowe is a renowned finance coach and mentor, specializing in family, individual, and business finance. With over 13 years of experience across both for-profit and non-profit sectors, she empowers individuals and SMEs through financial education, strategy development, and systems optimization as Lead Consultant of TPF Consulting Services.",
     fullBio: [
@@ -34,6 +52,7 @@ export const speakersList: Speaker[] = [
     name: "Theophilus Adewale Onadeko, PhD, FCIB",
     role: "CEO, SWAgCo Limited & Fractional MD, Vantage Forum",
     image: "/theophilus-onadeko.jpg",
+    talkTitle: "Corporate Strategy, Impact Investing & Value Chain Finance for Scaling SMEs",
     shortBio:
       "Dr. Theo Adewale Onadeko is a seasoned finance, agribusiness and development executive with over 25 years of experience across corporate strategy, impact investing, SME banking, and agribusiness value chain finance. He is currently the CEO of SWAgCo Limited and Fractional Managing Director of Vantage Forum Ltd/Gte.",
     fullBio: [
@@ -48,6 +67,7 @@ export const speakersList: Speaker[] = [
     name: "Lanre Olokunde",
     role: "Managing Partner, Voranex Africa & Resident Pastor, TEC FESTAC",
     image: "/lanre-olokunde.jpg",
+    talkTitle: "Leveraging AI & Emerging Technology to Build Globally Ready Businesses",
     shortBio:
       "Lanre Olokunde is a visionary leader and technology strategist who operates at the unique intersection of innovation and faith. A distinguished expert in enterprise AI solutions and Managing Partner at Voranex Africa, he is focused on building the most trusted African operating layer for global businesses.",
     fullBio: [
@@ -62,6 +82,7 @@ export const speakersList: Speaker[] = [
     name: "Dr. Joseph Ogebe",
     role: "Head of Research & Development, Nigerian Economic Summit Group (NESG)",
     image: "/joseph-ogebe.jpg",
+    talkTitle: "Macroeconomic Outlook, Policy Reform & Expanding Market Opportunities",
     shortBio:
       "Dr. Joseph Ogebe is a seasoned development economist and macroeconomic policy expert with over a decade of experience spanning international development, economic research, and private-sector policy analysis. He currently leads high-impact economic reform and development research at the NESG.",
     fullBio: [
@@ -77,6 +98,7 @@ export const speakersList: Speaker[] = [
     name: "Jimmy (G-Me) Mokikan",
     role: "Director of Human Resources, VerifyMe Nigeria",
     image: "/jimmy-mokikan.jpg",
+    talkTitle: "People Strategy, Organizational Design & High-Performance Culture",
     shortBio:
       "Jimmy (G-Me) Mokikan is a seasoned Human Resources Executive and leadership mentor with over two decades of experience across banking, fintech, telecommunications, and digital identity services. As Director of HR at VerifyMe Nigeria, he aligns people strategy with business performance in high-growth environments.",
     fullBio: [
@@ -91,6 +113,7 @@ export const speakersList: Speaker[] = [
     name: "Mrs Adebola Esther Santos",
     role: "Founder & CEO, RecycleGarb Hub Limited | Entrepreneur & Circular Economy Advocate",
     image: "/adebola-santos.jpg",
+    talkTitle: "Building Sustainable Enterprises, Circular Economy & International Agro-Trade",
     shortBio:
       "Mrs Adebola Santos is a Nigerian entrepreneur with experience spanning banking, environmental sustainability, circular economy, food processing, and international agro-commodity trade. As Founder & CEO of RecycleGarb Hub Limited, she has facilitated the recovery and recycling of over 5,000 tons of plastic waste.",
     fullBio: [
@@ -108,6 +131,7 @@ export const speakersList: Speaker[] = [
     name: "Akinola Ayobami",
     role: "Founder, BeaconHub & ElevateHub | Software Engineer & Entrepreneur",
     image: "/ayobami.jpeg",
+    talkTitle: "Digital Systems, Data Compliance & Tech-Enabled Business Growth",
     shortBio:
       "Akinola Ayobami is a software engineer and entrepreneur, and the founder of BeaconHub, a software development agency building web and mobile products for businesses and organizations. With over five years of experience, he has delivered fintech platforms, booking systems, and data compliance tools while growing the tech ecosystem in Oyo State.",
     fullBio: [
@@ -123,13 +147,13 @@ export default function SpeakersSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
             <span className="inline-block text-secondary text-sm font-bold uppercase tracking-widest mb-4">
-              Featured Speakers
+              Host & Featured Speakers
             </span>
             <h2 className="text-4xl sm:text-5xl text-slate-900 leading-tight">
-              Meet Our <span className="text-primary">Speakers</span>
+              Meet the <span className="text-primary">Host & Speakers</span>
             </h2>
             <p className="mt-4 text-slate-500 text-lg">
-              Learn directly from accomplished industry leaders, finance experts, and enterprise builders at the Ibadan Business Roundtable.
+              Learn directly from Pastor Seun Afolayan and accomplished industry leaders, finance experts, and enterprise builders at the Ibadan Business Roundtable.
             </p>
           </div>
 
@@ -137,16 +161,20 @@ export default function SpeakersSection() {
             href="/register"
             className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3.5 rounded-xl text-sm font-bold hover:bg-primary-dark transition-all self-start md:self-auto shadow-md shadow-primary/20"
           >
-            Reserve Your Seat <ArrowRight size={16} />
+            Register Now <ArrowRight size={16} />
           </Link>
         </div>
 
         {/* Speakers Grid — Uniform Card Heights */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {speakersList.map((speaker) => (
             <div
               key={speaker.slug}
-              className="bg-slate-50 rounded-3xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-primary/40 transition-all duration-300 flex flex-col h-full group"
+              className={`rounded-3xl overflow-hidden border transition-all duration-300 flex flex-col h-full group ${
+                speaker.isHost
+                  ? "bg-gradient-to-b from-primary-light/50 to-white border-primary/50 shadow-md hover:shadow-xl"
+                  : "bg-slate-50 border-slate-200/80 shadow-xs hover:shadow-xl hover:border-primary/40"
+              }`}
             >
               {/* Portrait Image at top */}
               <Link
@@ -158,28 +186,42 @@ export default function SpeakersSection() {
                   alt={speaker.name}
                   fill
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
-                  sizes="(max-width: 768px) 100vw, 400px"
+                  sizes="(max-width: 768px) 100vw, 350px"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-60" />
+
+                {/* Host or Speaker Badge */}
+                <div className="absolute top-3.5 left-3.5">
+                  <span
+                    className={`inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm ${
+                      speaker.isHost
+                        ? "bg-secondary text-white"
+                        : "bg-slate-900/80 backdrop-blur-md text-white border border-white/20"
+                    }`}
+                  >
+                    <Mic size={11} />
+                    {speaker.isHost ? "Chief Host" : "Speaker"}
+                  </span>
+                </div>
               </Link>
 
               {/* Content Block — Fixed Uniform Proportions */}
-              <div className="p-7 flex flex-col flex-1 justify-between">
+              <div className="p-6 flex flex-col flex-1 justify-between">
                 <div>
                   <Link href={`/speakers/${speaker.slug}`}>
-                    <h3 className="text-2xl text-slate-900 tracking-tight mb-1.5 group-hover:text-primary transition-colors line-clamp-1">
+                    <h3 className="text-xl text-slate-900 tracking-tight mb-1.5 group-hover:text-primary transition-colors line-clamp-1">
                       {speaker.name}
                     </h3>
                   </Link>
                   <p className="text-xs font-bold uppercase tracking-wider text-primary mb-3 min-h-[2rem] line-clamp-2">
                     {speaker.role}
                   </p>
-                  <p className="text-slate-600 text-sm sm:text-[15px] leading-relaxed line-clamp-5 min-h-[7.5rem]">
+                  <p className="text-slate-600 text-sm leading-relaxed line-clamp-5 min-h-[7.5rem]">
                     {speaker.shortBio}
                   </p>
                 </div>
 
-                <div className="pt-5 mt-5 border-t border-slate-200/70">
+                <div className="pt-4 mt-4 border-t border-slate-200/70">
                   <Link
                     href={`/speakers/${speaker.slug}`}
                     className="inline-flex items-center gap-1.5 text-sm font-bold text-secondary hover:text-secondary-dark transition-colors group/link"

@@ -5,9 +5,9 @@ import Footer from "./components/Footer";
 import ToastWrapper from "./components/ToastWrapper";
 
 export const metadata: Metadata = {
-  title: "Vantage Forum — Ibadan Business Roundtable",
+  title: "Ibadan Business Roundtable — Global Ready: Scaling Businesses, Building Wealth, Expanding Opportunities",
   description:
-    "The premier gathering for business owners, founders, SME leaders, and investors in Ibadan and its environs — featuring keynote speakers, B2B deal-making, and sponsorship opportunities.",
+    "THEME: GLOBAL READY: Scaling Businesses, Building Wealth, Expanding Opportunities. Join Pastor Seun Afolayan and industry leaders on 5th December 2026 at PISTIS HUB, The Elevation Church, Mobil, Ring Road, Ibadan (Landmark: Energy Switch Filling Station).",
   icons: {
     icon: [
       { url: "/icon.png", sizes: "32x32", type: "image/png" },
@@ -32,7 +32,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>
