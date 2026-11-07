@@ -166,7 +166,7 @@ export default function AboutPage() {
                 "Actionable checklist for accessing BOI, development grants & commercial credit",
                 "Direct introductions to B2B vendors, logistics partners, and wholesale buyers",
                 "Practical tax & compliance templates tailored to Oyo State enterprises",
-                "Post-event access to the Ibadan Business Owners WhatsApp Mastermind",
+                "Networking and collaboration opportunities with fellow Oyo State entrepreneurs",
                 "Priority invitations to quarterly executive breakfasts and investor pitch days",
               ].map((benefit) => (
                 <div

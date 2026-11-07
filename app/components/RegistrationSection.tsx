@@ -59,7 +59,7 @@ const sponsorPackages = [
 const highlights = [
   "Free registration to attend the Ibadan Business Roundtable",
   "Access to Keynote Sessions, Industry Panels & Breakout Roundtables",
-  "Join our active WhatsApp network of business owners in Ibadan",
+  "Direct networking with 300+ business owners, executives & investors in Ibadan",
   "Optional Partnership & Sponsorship packages available (₦10,000 – ₦100,000)",
 ];
 
@@ -70,8 +70,6 @@ const BANK_DETAILS = {
 };
 
 const WHATSAPP_NUMBER = "2348105008260";
-const WHATSAPP_GROUP_LINK =
-  "https://chat.whatsapp.com/LM57lwiFGkY5dFvQUqdr2Z?mode=gi_t";
 
 function RegistrationSectionContent() {
   const searchParams = useSearchParams();
@@ -195,7 +193,7 @@ function RegistrationSectionContent() {
           : "Registration Confirmed! 🎉",
         description: form.isSponsor
           ? "Please proceed with your partnership payment details below."
-          : "Join our official WhatsApp community to connect with other business owners.",
+          : "Your seat for the Ibadan Business Roundtable has been reserved.",
         color: "success",
       });
 
@@ -322,7 +320,7 @@ function RegistrationSectionContent() {
                       </p>
                     </div>
 
-                    {/* WhatsApp Proof & Community Links */}
+                    {/* WhatsApp Proof Link */}
                     <div className="space-y-3">
                       <a
                         href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -340,33 +338,47 @@ function RegistrationSectionContent() {
                         Send Proof of Payment on WhatsApp
                       </a>
 
-                      <a
-                        href={WHATSAPP_GROUP_LINK}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full bg-secondary text-white hover:bg-secondary-dark font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all"
+                      <button
+                        type="button"
+                        onClick={() => setSubmissionSuccess(null)}
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-100 cursor-pointer"
                       >
-                        Join WhatsApp Community <ArrowRight size={16} />
-                      </a>
+                        Register Another Representative
+                      </button>
                     </div>
                   </div>
                 ) : (
-                  /* Community WhatsApp Join Button */
-                  <div className="mt-6 space-y-4">
+                  /* Free Seat Confirmation */
+                  <div className="mt-6 space-y-5">
                     <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                      You are now registered for the Ibadan Business Roundtable! Click the
-                      button below to join our official WhatsApp group where we share event
-                      updates, resources, and announcements.
+                      Your seat for{" "}
+                      <strong>
+                        {submissionSuccess.businessName || submissionSuccess.name}
+                      </strong>{" "}
+                      is officially reserved for the{" "}
+                      <strong>Ibadan Business Roundtable</strong>!
                     </p>
-                    <a
-                      href={WHATSAPP_GROUP_LINK}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2.5 transition-all shadow-md shadow-green-600/20"
+                    <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 text-left text-xs sm:text-sm text-slate-600 space-y-1.5">
+                      <p>
+                        <strong className="text-slate-900">Date:</strong> Saturday, 5th
+                        December 2026
+                      </p>
+                      <p>
+                        <strong className="text-slate-900">Time:</strong> 10:00 AM
+                      </p>
+                      <p>
+                        <strong className="text-slate-900">Venue:</strong> PISTIS HUB, The
+                        Elevation Church, Mobil, Ring Road, Ibadan (Landmark: Energy Switch
+                        Filling Station)
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setSubmissionSuccess(null)}
+                      className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3.5 px-6 rounded-xl transition-all cursor-pointer"
                     >
-                      <MessageCircle size={20} />
-                      Join WhatsApp Group Now
-                    </a>
+                      Register Another Representative
+                    </button>
                   </div>
                 )}
               </div>
@@ -505,7 +517,7 @@ function RegistrationSectionContent() {
                     ? "Processing..."
                     : form.isSponsor
                     ? "Proceed to Partnership Payment Details →"
-                    : "Register & Get WhatsApp Link →"}
+                    : "Complete Registration →"}
                 </button>
                 <p className="text-center text-xs text-slate-400 mt-2">
                   No spam. Strictly event updates & business resources.
