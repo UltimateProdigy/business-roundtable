@@ -35,7 +35,7 @@ export default function HeroSection() {
       {/* Gradient overlay so the full-bleed Ibadan photograph shines through while keeping text legible */}
       <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-900/85 to-slate-950/80" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 md:pt-28 md:pb-20 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 md:pt-36 lg:pt-40 md:pb-24 w-full">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left 7 Columns: Event Title, Theme, Venue & CTAs */}
           <div className="lg:col-span-7">

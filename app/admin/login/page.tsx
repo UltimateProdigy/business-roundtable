@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ShieldCheck, Lock, ArrowRight } from "lucide-react";
-import { addToast } from "@heroui/toast";
+import { addToast } from "@/app/components/ToastWrapper";
 
 export default function AdminLoginPage() {
   const [password, setPassword] = useState("");

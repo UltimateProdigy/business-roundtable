@@ -52,13 +52,25 @@ export default function Navbar() {
           {/* ── Logo (left) ── */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
             <Image
-              src="/vantage-logo-clean.png"
-              alt="Vantage Forum — Ibadan Business Roundtable Logo"
-              width={148}
-              height={46}
+              src="/logo-icon-clean.png"
+              alt="The Elevation Church — Ibadan Round Table Logo"
+              width={36}
+              height={36}
               unoptimized
-              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              className="group-hover:scale-105 transition-transform duration-300"
             />
+            <span
+              className={`text-lg tracking-tight transition-colors duration-300 font-semibold ${
+                isGlass ? "text-white" : "text-slate-800"
+              }`}
+              style={{ fontFamily: "'Outfit', sans-serif" }}
+            >
+              ibadan
+              <span className={isGlass ? "text-secondary" : "text-primary"}>·</span>
+              <span className={isGlass ? "text-secondary" : "text-primary"}>
+                round table
+              </span>
+            </span>
           </Link>
 
           {/* ── Nav Links (center) ── */}

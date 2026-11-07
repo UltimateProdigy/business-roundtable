@@ -14,7 +14,7 @@ import {
   CheckCheck,
   ShieldCheck,
 } from "lucide-react";
-import { addToast } from "@heroui/toast";
+import { addToast } from "@/app/components/ToastWrapper";
 import { supabase } from "@/lib/supabase";
 
 export const sponsorTiers = [
@@ -294,95 +294,102 @@ export default function SponsorsSection() {
                   Direct Partnerships Desk
                 </p>
                 <p className="text-sm text-slate-200">
-                  Phone / WhatsApp: <strong>+234 810 080 1513</strong>
-                </p>
-                <p className="text-sm text-slate-200">
-                  Email: <strong>roundtable@elevatehub.com</strong>
+                  Phone / WhatsApp: <strong>0810 500 8260</strong>
                 </p>
               </div>
             </div>
 
-            {/* Right Form or Confirmation */}
+            {/* Right Form or Confirmation (ElevateHub Payment Style) */}
             <div className="lg:col-span-7 bg-white text-slate-900 rounded-2xl p-6 sm:p-8">
               {submittedSponsor ? (
-                <div className="py-4 text-center space-y-5">
-                  <div className="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center mx-auto">
-                    <CheckCircle2 size={34} className="text-primary" />
+                <div className="py-4 text-center">
+                  <div className="w-16 h-16 bg-secondary-light rounded-full flex items-center justify-center mx-auto mb-5 shadow-sm">
+                    <CheckCircle2 size={36} className="text-primary" />
                   </div>
-                  <h4 className="text-2xl text-slate-900">
-                    Thank You, {submittedSponsor.companyName}! 🤝
+                  <h4 className="text-2xl sm:text-3xl text-slate-900 mb-2">
+                    Welcome, {submittedSponsor.contactName}! 🎉
                   </h4>
-                  <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                    We have recorded your interest in the{" "}
-                    <strong className="text-primary">{submittedSponsor.tier}</strong> package.
-                    You can proceed via bank transfer below or message our Sponsorship Desk on WhatsApp for your official invoice & sponsorship deck.
-                  </p>
 
-                  {/* Bank Details Box */}
-                  <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 text-left space-y-3">
-                    <div className="flex items-center justify-between border-b border-slate-200 pb-2.5">
-                      <span className="text-xs font-bold uppercase tracking-wider text-primary">
-                        Official Sponsorship Account
-                      </span>
-                      <span className="bg-secondary-light text-secondary-dark text-xs font-bold px-2.5 py-0.5 rounded-full">
-                        {submittedSponsor.tier}
-                      </span>
+                  <div className="mt-6 text-left space-y-6">
+                    <div className="bg-slate-50 p-5 sm:p-6 rounded-2xl border border-secondary/40 shadow-sm">
+                      <div className="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
+                        <span className="text-xs font-bold uppercase tracking-wider text-primary">
+                          Partnership & Sponsorship Payment Details
+                        </span>
+                        <span className="bg-secondary text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                          {submittedSponsor.tier}
+                        </span>
+                      </div>
+
+                      <div className="space-y-3 text-sm text-slate-700">
+                        <div>
+                          <p className="text-xs text-slate-400 font-medium">Bank Name</p>
+                          <p className="font-semibold text-slate-900">
+                            {SPONSOR_BANK_DETAILS.bankName}
+                          </p>
+                        </div>
+
+                        <div>
+                          <p className="text-xs text-slate-400 font-medium">Account Name</p>
+                          <p className="font-semibold text-slate-900">
+                            {SPONSOR_BANK_DETAILS.accountName}
+                          </p>
+                        </div>
+
+                        <div className="bg-white p-3 rounded-xl border border-slate-200 flex items-center justify-between">
+                          <div>
+                            <p className="text-xs text-slate-400 font-medium">
+                              Account Number
+                            </p>
+                            <p className="font-mono text-lg font-bold text-primary tracking-wider">
+                              {SPONSOR_BANK_DETAILS.accountNumber}
+                            </p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={handleCopyAccount}
+                            className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer shadow-2xs"
+                          >
+                            {copied ? (
+                              <CheckCheck size={14} className="text-green-600" />
+                            ) : (
+                              <Copy size={14} />
+                            )}
+                            {copied ? "Copied!" : "Copy"}
+                          </button>
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-slate-500 mt-4 leading-relaxed">
+                        <ShieldCheck size={14} className="inline mr-1 text-primary" />
+                        Please use your <strong>full name or business name</strong> (
+                        {submittedSponsor.companyName}) as the payment narration so we can
+                        identify your transfer quickly.
+                      </p>
                     </div>
-                    <div className="grid sm:grid-cols-2 gap-3 text-xs">
-                      <div>
-                        <p className="text-slate-400">Bank Name</p>
-                        <p className="font-bold text-slate-900 text-sm">
-                          {SPONSOR_BANK_DETAILS.bankName}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-slate-400">Account Name</p>
-                        <p className="font-bold text-slate-900 text-sm">
-                          {SPONSOR_BANK_DETAILS.accountName}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="bg-white p-3 rounded-xl border border-slate-200 flex items-center justify-between">
-                      <div>
-                        <p className="text-xs text-slate-400">Account Number</p>
-                        <p className="font-mono text-lg font-bold text-primary">
-                          {SPONSOR_BANK_DETAILS.accountNumber}
-                        </p>
-                      </div>
+
+                    {/* WhatsApp Proof & Community Links */}
+                    <div className="space-y-3">
+                      <a
+                        href={`https://wa.me/2348105008260?text=${encodeURIComponent(
+                          `Hi Ibadan Business Roundtable! I just registered as a ${submittedSponsor.tier} for ${submittedSponsor.companyName} and I'm ready to send my proof of payment. My name is ${submittedSponsor.contactName}.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md shadow-green-600/20"
+                      >
+                        <MessageCircle size={18} />
+                        Send Proof of Payment on WhatsApp
+                      </a>
+
                       <button
                         type="button"
-                        onClick={handleCopyAccount}
-                        className="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 px-3 py-2 rounded-lg text-xs font-bold transition cursor-pointer"
+                        onClick={() => setSubmittedSponsor(null)}
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-100 cursor-pointer"
                       >
-                        {copied ? <CheckCheck size={14} className="text-green-600" /> : <Copy size={14} />}
-                        {copied ? "Copied!" : "Copy"}
+                        Register Another Sponsor / Partner
                       </button>
                     </div>
-                    <p className="text-xs text-slate-500">
-                      <ShieldCheck size={14} className="inline mr-1 text-primary" />
-                      Narration: <strong>IBR Sponsor - {submittedSponsor.companyName}</strong>
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <a
-                      href={`https://wa.me/2348100801513?text=${encodeURIComponent(
-                        `Hello Vantage Forum Team! I just submitted a sponsorship inquiry for ${submittedSponsor.companyName} (${submittedSponsor.tier}). My name is ${submittedSponsor.contactName}.`
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 px-5 rounded-xl flex items-center justify-center gap-2 text-sm transition"
-                    >
-                      <MessageCircle size={18} />
-                      Chat with Sponsorship Desk on WhatsApp
-                    </a>
-                    <button
-                      type="button"
-                      onClick={() => setSubmittedSponsor(null)}
-                      className="px-4 py-3.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-100 cursor-pointer"
-                    >
-                      Submit Another Inquiry
-                    </button>
                   </div>
                 </div>
               ) : (

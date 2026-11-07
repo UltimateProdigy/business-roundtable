@@ -1,22 +1,14 @@
-import { Mail, MessageCircle, Camera, MapPin, ExternalLink } from "lucide-react";
+import { MessageCircle, Camera, MapPin, ExternalLink } from "lucide-react";
 
 const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=The+Elevation+Church+Mobil+Ring+Road+Energy+Switch+Filling+Station+Ibadan";
 
 const contacts = [
   {
-    Icon: Mail,
-    label: "Partnerships & Inquiries",
-    value: "roundtable@elevatehub.com",
-    href: "mailto:roundtable@elevatehub.com",
-    iconBg: "bg-primary-light",
-    iconColor: "text-primary",
-  },
-  {
     Icon: MessageCircle,
     label: "WhatsApp Secretariat",
-    value: "+234 810 080 1513",
-    href: "https://wa.me/2348100801513",
+    value: "0810 500 8260",
+    href: "https://wa.me/2348105008260",
     iconBg: "bg-green-50",
     iconColor: "text-green-600",
   },
@@ -54,7 +46,7 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto mb-12">
+        <div className="grid sm:grid-cols-3 gap-5 max-w-5xl mx-auto mb-12">
           {contacts.map(({ Icon, label, value, href, iconBg, iconColor }) => (
             <a
               key={label}

@@ -10,9 +10,8 @@ import {
   MessageCircle,
   ArrowRight,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
-import { addToast } from "@heroui/toast";
+import { addToast } from "@/app/components/ToastWrapper";
 import { supabase } from "@/lib/supabase";
 
 const industries = [
@@ -30,28 +29,47 @@ const industries = [
   "Other Business Sector",
 ];
 
-const businessRoles = [
-  "Founder / CEO / Managing Director",
-  "Co-Founder / Business Partner",
-  "General Manager / Operations Lead",
-  "Investor / Financier / Ecosystem Enabler",
-  "Aspiring Business Owner",
+const sponsorPackages = [
+  {
+    label: "Gold Partner — ₦10,000 (Logo on backdrop)",
+    value: "Gold Partner",
+    amount: 10000,
+    displayAmount: "₦10,000",
+  },
+  {
+    label: "Silver Partner — ₦20,000 (Logo + Exhibition space)",
+    value: "Silver Partner",
+    amount: 20000,
+    displayAmount: "₦20,000",
+  },
+  {
+    label: "Platinum Partner — ₦50,000 (Logo + Exhibition + 3-min Video)",
+    value: "Platinum Partner",
+    amount: 50000,
+    displayAmount: "₦50,000",
+  },
+  {
+    label: "Diamond Partner — ₦100,000 (Bigger Logo + Exhibition + 5-min Presentation)",
+    value: "Diamond Partner",
+    amount: 100000,
+    displayAmount: "₦100,000",
+  },
 ];
 
 const highlights = [
-  "Free Standard Business Pass for verified Ibadan business owners",
+  "Free registration to attend the Ibadan Business Roundtable",
   "Access to Keynote Sessions, Industry Panels & Breakout Roundtables",
-  "Join the official Ibadan Business Owners WhatsApp Network",
-  "Optional VIP Executive & Exhibition Pass (₦25,000) with Deal Room & VIP Lunch",
+  "Join our active WhatsApp network of business owners in Ibadan",
+  "Optional Partnership & Sponsorship packages available (₦10,000 – ₦100,000)",
 ];
 
 const BANK_DETAILS = {
   bankName: "Guaranty Trust Bank (GT BANK)",
   accountName: "TEC Ibadan Special Event Account",
   accountNumber: "0865130525",
-  amount: "₦25,000",
 };
 
+const WHATSAPP_NUMBER = "2348105008260";
 const WHATSAPP_GROUP_LINK =
   "https://chat.whatsapp.com/LM57lwiFGkY5dFvQUqdr2Z?mode=gi_t";
 
@@ -62,8 +80,9 @@ function RegistrationSectionContent() {
   const [submissionSuccess, setSubmissionSuccess] = useState<null | {
     name: string;
     businessName: string;
-    isVip: boolean;
-    vipOption?: string;
+    isSponsor: boolean;
+    tier: string;
+    displayAmount: string;
   }>(null);
 
   const [form, setForm] = useState({
@@ -72,20 +91,24 @@ function RegistrationSectionContent() {
     phone: "",
     businessName: "",
     industry: "",
-    businessRole: "Founder / CEO / Managing Director",
-    isVip: false,
-    vipOption: "VIP Executive Lunch + Deal Room Access",
-    expectations: "",
+    isSponsor: false,
+    tier: "Gold Partner",
   });
 
   useEffect(() => {
-    if (searchParams.get("vip") === "true") {
-      setForm((prev) => ({ ...prev, isVip: true }));
+    const sponsorParam = searchParams.get("sponsor");
+    const tierParam = searchParams.get("tier");
+    if (sponsorParam === "true") {
+      setForm((prev) => ({
+        ...prev,
+        isSponsor: true,
+        tier: tierParam || prev.tier,
+      }));
     }
   }, [searchParams]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const target = e.target as HTMLInputElement;
     const value = target.type === "checkbox" ? target.checked : target.value;
@@ -103,63 +126,94 @@ function RegistrationSectionContent() {
     setTimeout(() => setCopied(false), 3000);
   };
 
+  const selectedPackage =
+    sponsorPackages.find((p) => p.value === form.tier) || sponsorPackages[0];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      if (!form.name.trim() || !form.email.trim() || !form.businessName.trim()) {
+      if (!form.name.trim() || !form.email.trim()) {
         addToast({
           title: "Missing details",
-          description: "Please enter your full name, email, and business name.",
+          description: "Please enter your full name and email address.",
           color: "danger",
         });
         setLoading(false);
         return;
       }
 
-      const { error } = await supabase.from("roundtable_registrations").insert([
-        {
-          name: form.name.trim(),
-          email: form.email.trim(),
-          phone: form.phone.trim(),
-          business_name: form.businessName.trim(),
-          industry: form.industry || "General Business",
-          business_role: form.businessRole,
-          pass_type: form.isVip ? "vip" : "standard",
-          amount: form.isVip ? 25000 : 0,
-          payment_status: form.isVip ? "pending" : "free",
-          expectations: form.expectations.trim() || (form.isVip ? form.vipOption : ""),
-        },
-      ]);
+      // 1. If user checked Sponsor/Partner, record in sponsor_inquiries table
+      if (form.isSponsor) {
+        const { error: sponsorError } = await supabase
+          .from("sponsor_inquiries")
+          .insert([
+            {
+              company_name: form.businessName.trim() || form.name.trim(),
+              contact_name: form.name.trim(),
+              email: form.email.trim(),
+              phone: form.phone.trim(),
+              tier: `${selectedPackage.value} (${selectedPackage.displayAmount})`,
+              message: `Industry: ${form.industry || "General Business"}`,
+              status: "new",
+            },
+          ]);
 
-      if (error) {
-        console.error("Registration insert error:", error);
+        if (sponsorError) {
+          console.error("Sponsor insert error:", sponsorError);
+        }
+      }
+
+      // 2. Always record user in roundtable_registrations table
+      const { error: regError } = await supabase
+        .from("roundtable_registrations")
+        .insert([
+          {
+            name: form.name.trim(),
+            email: form.email.trim(),
+            phone: form.phone.trim(),
+            business_name: form.businessName.trim() || "Individual / Business",
+            industry: form.industry || "General Business",
+            business_role: "Business Owner / Representative",
+            pass_type: form.isSponsor ? "vip" : "standard",
+            amount: form.isSponsor ? selectedPackage.amount : 0,
+            payment_status: form.isSponsor ? "pending" : "free",
+            expectations: form.isSponsor
+              ? `${selectedPackage.value} (${selectedPackage.displayAmount})`
+              : "",
+          },
+        ]);
+
+      if (regError) {
+        console.error("Registration insert error:", regError);
       }
 
       addToast({
-        title: form.isVip
-          ? "VIP Registration Initiated! 🌟"
-          : "Seat Reserved at the Roundtable! 🎉",
-        description: form.isVip
-          ? "Please complete your VIP / Exhibition pass transfer below."
-          : "Join our official Ibadan Business Owners WhatsApp community below.",
+        title: form.isSponsor
+          ? "Partnership Registration Started!"
+          : "Registration Confirmed! 🎉",
+        description: form.isSponsor
+          ? "Please proceed with your partnership payment details below."
+          : "Join our official WhatsApp community to connect with other business owners.",
         color: "success",
       });
 
       setSubmissionSuccess({
         name: form.name.trim(),
         businessName: form.businessName.trim(),
-        isVip: form.isVip,
-        vipOption: form.vipOption,
+        isSponsor: form.isSponsor,
+        tier: selectedPackage.value,
+        displayAmount: selectedPackage.displayAmount,
       });
     } catch (err) {
       console.error(err);
       setSubmissionSuccess({
         name: form.name.trim(),
         businessName: form.businessName.trim(),
-        isVip: form.isVip,
-        vipOption: form.vipOption,
+        isSponsor: form.isSponsor,
+        tier: selectedPackage.value,
+        displayAmount: selectedPackage.displayAmount,
       });
     } finally {
       setLoading(false);
@@ -169,24 +223,21 @@ function RegistrationSectionContent() {
   return (
     <section id="register" className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column */}
-          <div className="lg:sticky lg:top-28">
+          <div>
             <span className="inline-block text-secondary text-sm font-bold uppercase tracking-widest mb-4">
-              Seat Registration
+              Seat & Partnership Registration
             </span>
             <h2 className="text-4xl sm:text-5xl text-slate-900 leading-tight mb-4">
-              Take Your Seat at the{" "}
-              <span className="text-primary">Roundtable.</span>
+              Ready to Be <span className="text-primary">Global Ready?</span>
             </h2>
             <p className="text-slate-500 text-lg leading-relaxed mb-8">
-              Register your business for the upcoming Ibadan Business Roundtable.
-              Whether you are attending with our complimentary Standard Business Pass
-              or upgrading to the VIP Executive & Deal Room Pass, you&apos;ll be in the
-              room with Oyo State&apos;s most driven entrepreneurs.
+              Register today for the Ibadan Business Roundtable. Whether you want to
+              attend for free or showcase your brand as an official Sponsor & Partner,
+              you&apos;re in the right place.
             </p>
-
-            <div className="space-y-4 mb-8">
+            <div className="space-y-4">
               {highlights.map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -198,44 +249,29 @@ function RegistrationSectionContent() {
                 </div>
               ))}
             </div>
-
-            <div className="bg-primary rounded-2xl p-6 text-white">
-              <div className="flex items-center gap-2 text-secondary-light text-xs font-bold uppercase tracking-widest mb-2">
-                <Sparkles size={14} />
-                <span>Why Register Early?</span>
-              </div>
-              <p className="text-sm text-white/90 leading-relaxed">
-                Registered businesses are listed in our digital{" "}
-                <strong>Ibadan Business Roundtable Matchmaking Directory</strong> shared
-                with all attendees, speakers, and sponsors before event day.
-              </p>
-            </div>
           </div>
 
           {/* Right Column: Form or Success Screen */}
           <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm">
             {submissionSuccess ? (
               <div className="py-4 text-center">
-                <div className="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-5 shadow-sm">
+                <div className="w-16 h-16 bg-secondary-light rounded-full flex items-center justify-center mx-auto mb-5 shadow-sm">
                   <CheckCircle2 size={36} className="text-primary" />
                 </div>
-                <h3 className="text-2xl sm:text-3xl text-slate-900 mb-1">
+                <h3 className="text-2xl sm:text-3xl text-slate-900 mb-2">
                   Welcome, {submissionSuccess.name}! 🎉
                 </h3>
-                <p className="text-xs font-bold uppercase tracking-wider text-secondary mb-4">
-                  Representing {submissionSuccess.businessName}
-                </p>
 
-                {submissionSuccess.isVip ? (
-                  /* VIP Payment Instructions */
+                {submissionSuccess.isSponsor ? (
+                  /* Partnership & Sponsorship Payment Instructions (ElevateHub style) */
                   <div className="mt-6 text-left space-y-6">
-                    <div className="bg-slate-50 p-5 sm:p-6 rounded-2xl border border-secondary/40 shadow-xs">
+                    <div className="bg-slate-50 p-5 sm:p-6 rounded-2xl border border-secondary/40 shadow-sm">
                       <div className="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
                         <span className="text-xs font-bold uppercase tracking-wider text-primary">
-                          VIP Executive Pass Payment
+                          {submissionSuccess.tier} Payment Details
                         </span>
                         <span className="bg-secondary text-white text-xs font-bold px-2.5 py-1 rounded-full">
-                          {BANK_DETAILS.amount}
+                          {submissionSuccess.displayAmount}
                         </span>
                       </div>
 
@@ -266,7 +302,7 @@ function RegistrationSectionContent() {
                           <button
                             type="button"
                             onClick={handleCopyAccount}
-                            className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+                            className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer shadow-2xs"
                           >
                             {copied ? (
                               <CheckCheck size={14} className="text-green-600" />
@@ -280,16 +316,21 @@ function RegistrationSectionContent() {
 
                       <p className="text-xs text-slate-500 mt-4 leading-relaxed">
                         <ShieldCheck size={14} className="inline mr-1 text-primary" />
-                        Please use <strong>IBR - {submissionSuccess.businessName}</strong> as
-                        your transfer narration for instant verification.
+                        Please use your <strong>full name or business name</strong> (
+                        {submissionSuccess.businessName || submissionSuccess.name}) as the
+                        payment narration so we can identify your transfer quickly.
                       </p>
                     </div>
 
                     {/* WhatsApp Proof & Community Links */}
                     <div className="space-y-3">
                       <a
-                        href={`https://wa.me/2348100801513?text=${encodeURIComponent(
-                          `Hello Vantage Forum! I just registered for the VIP Executive Pass (${submissionSuccess.vipOption}) for my business "${submissionSuccess.businessName}". My name is ${submissionSuccess.name} and I'm sending my proof of payment.`
+                        href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                          `Hi Ibadan Business Roundtable! I just registered for the ${submissionSuccess.tier} (${submissionSuccess.displayAmount}) package and I'm ready to send my proof of payment. My name is ${submissionSuccess.name}${
+                            submissionSuccess.businessName
+                              ? ` (${submissionSuccess.businessName})`
+                              : ""
+                          }.`
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -305,19 +346,17 @@ function RegistrationSectionContent() {
                         rel="noopener noreferrer"
                         className="w-full bg-secondary text-white hover:bg-secondary-dark font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all"
                       >
-                        Join Ibadan Business Owners WhatsApp Group{" "}
-                        <ArrowRight size={16} />
+                        Join WhatsApp Community <ArrowRight size={16} />
                       </a>
                     </div>
                   </div>
                 ) : (
-                  /* Standard Free Pass Confirmation */
+                  /* Community WhatsApp Join Button */
                   <div className="mt-6 space-y-4">
                     <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                      Your seat for <strong>{submissionSuccess.businessName}</strong> is
-                      confirmed for the Ibadan Business Roundtable! Join our official
-                      WhatsApp network below to connect with fellow Ibadan business owners
-                      and receive venue updates & speaker materials.
+                      You are now registered for the Ibadan Business Roundtable! Click the
+                      button below to join our official WhatsApp group where we share event
+                      updates, resources, and announcements.
                     </p>
                     <a
                       href={WHATSAPP_GROUP_LINK}
@@ -326,178 +365,131 @@ function RegistrationSectionContent() {
                       className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2.5 transition-all shadow-md shadow-green-600/20"
                     >
                       <MessageCircle size={20} />
-                      Join Business Owners WhatsApp Network
+                      Join WhatsApp Group Now
                     </a>
-                    <button
-                      type="button"
-                      onClick={() => setSubmissionSuccess(null)}
-                      className="text-xs font-semibold text-slate-400 hover:text-primary underline cursor-pointer mt-2"
-                    >
-                      Register another business representative
-                    </button>
                   </div>
                 )}
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <h3 className="text-2xl sm:text-3xl text-slate-900 mb-6">
+                <h3 className="text-2xl text-slate-900 mb-6">
                   Register for Ibadan Business Roundtable
                 </h3>
 
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                      Full Name <span className="text-red-400">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="e.g. Adesola Ogunlana"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                      Business / Company Name <span className="text-red-400">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="businessName"
-                      required
-                      value={form.businessName}
-                      onChange={handleChange}
-                      placeholder="e.g. Bodija Mart & Logistics"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                      Email Address <span className="text-red-400">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="founder@yourbusiness.com"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                      WhatsApp Phone Number <span className="text-red-400">*</span>
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      required
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="+234 803 123 4567"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                      Business Sector / Industry <span className="text-red-400">*</span>
-                    </label>
-                    <select
-                      name="industry"
-                      required
-                      value={form.industry}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition cursor-pointer"
-                    >
-                      <option value="" disabled>
-                        Select your sector...
-                      </option>
-                      {industries.map((ind) => (
-                        <option key={ind} value={ind}>
-                          {ind}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                      Your Role in the Business <span className="text-red-400">*</span>
-                    </label>
-                    <select
-                      name="businessRole"
-                      required
-                      value={form.businessRole}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition cursor-pointer"
-                    >
-                      {businessRoles.map((role) => (
-                        <option key={role} value={role}>
-                          {role}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                    Key Business Goal / Question for the Panel (Optional)
+                    Full Name <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
-                    name="expectations"
-                    value={form.expectations}
+                    name="name"
+                    required
+                    value={form.name}
                     onChange={handleChange}
-                    placeholder="e.g. Accessing SME expansion credit, B2B distribution in Oyo State..."
+                    placeholder="e.g. Samuel Adeleke"
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
                   />
                 </div>
 
-                {/* VIP & Exhibition Upgrade Option Toggle */}
-                <div className="bg-secondary-light rounded-2xl p-4 border border-secondary/40 space-y-3">
-                  <label className="flex items-start sm:items-center gap-3 cursor-pointer">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                    Business / Company Name <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="businessName"
+                    required
+                    value={form.businessName}
+                    onChange={handleChange}
+                    placeholder="e.g. CrestView Enterprises"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                    Email Address <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="you@example.com"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                    WhatsApp Phone Number <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder="0810 500 8260"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                    Business Sector / Industry <span className="text-red-400">*</span>
+                  </label>
+                  <select
+                    name="industry"
+                    required
+                    value={form.industry}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition appearance-none cursor-pointer"
+                  >
+                    <option value="" disabled>
+                      Select your business sector...
+                    </option>
+                    {industries.map((ind) => (
+                      <option key={ind} value={ind}>
+                        {ind}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Partnership & Sponsorship Option Toggle (ElevateHub Bootcamp Toggle Style) */}
+                <div className="bg-secondary-light/70 rounded-2xl p-4 border border-secondary/40 space-y-3">
+                  <label className="flex items-center gap-3 cursor-pointer">
                     <input
                       type="checkbox"
-                      id="isVip"
-                      name="isVip"
-                      checked={form.isVip}
+                      id="isSponsor"
+                      name="isSponsor"
+                      checked={form.isSponsor}
                       onChange={handleChange}
-                      className="w-4 h-4 accent-primary rounded cursor-pointer mt-1 sm:mt-0"
+                      className="w-4 h-4 accent-primary rounded cursor-pointer"
                     />
                     <span className="text-sm font-bold text-slate-900">
-                      Upgrade to VIP Executive / Product Showcase Pass (₦25,000)
+                      I want to register as a Sponsor / Partner (₦10,000 – ₦100,000)
                     </span>
                   </label>
 
-                  {form.isVip && (
+                  {form.isSponsor && (
                     <div className="pt-2 border-t border-secondary/30">
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-primary-dark mb-1.5">
-                        Select VIP Preference:
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-primary mb-1.5">
+                        Select Your Preferred Partnership Tier:
                       </label>
                       <select
-                        name="vipOption"
-                        value={form.vipOption}
+                        name="tier"
+                        value={form.tier}
                         onChange={handleChange}
                         className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary transition cursor-pointer"
                       >
-                        <option value="VIP Executive Lunch + Deal Room Access">
-                          VIP Executive Lunch + Front-Row Seating + Deal Room Access
-                        </option>
-                        <option value="Mini Product Display Table + VIP Pass">
-                          Mini Product / Service Display Table + VIP Executive Pass
-                        </option>
+                        {sponsorPackages.map((pkg) => (
+                          <option key={pkg.value} value={pkg.value}>
+                            {pkg.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   )}
@@ -510,13 +502,13 @@ function RegistrationSectionContent() {
                   className="w-full bg-primary text-white py-4 rounded-xl font-bold text-base hover:bg-primary-dark transition-all hover:shadow-lg hover:shadow-primary/25 disabled:opacity-50 cursor-pointer mt-2"
                 >
                   {loading
-                    ? "Registering Your Business..."
-                    : form.isVip
-                    ? "Proceed to VIP Pass Payment Details →"
-                    : "Complete Free Registration & Join Network →"}
+                    ? "Processing..."
+                    : form.isSponsor
+                    ? "Proceed to Partnership Payment Details →"
+                    : "Register & Get WhatsApp Link →"}
                 </button>
                 <p className="text-center text-xs text-slate-400 mt-2">
-                  Strictly for business owners, founders, and enterprise professionals in Ibadan & environs.
+                  No spam. Strictly event updates & business resources.
                 </p>
               </form>
             )}

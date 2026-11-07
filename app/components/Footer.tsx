@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Camera, X, MessageCircle, ArrowRight, MapPin, Mail } from "lucide-react";
+import { Camera, X, MessageCircle, ArrowRight, MapPin } from "lucide-react";
 
 const footerLinks = [
   { label: "Home", href: "/" },
@@ -17,8 +17,7 @@ const footerLinks = [
 const socials = [
   { Icon: Camera, label: "Instagram", href: "https://instagram.com/elevatehub" },
   { Icon: X, label: "Twitter / X", href: "https://twitter.com/elevatehub" },
-  { Icon: MessageCircle, label: "WhatsApp Inquiry", href: "https://wa.me/2348100801513" },
-  { Icon: Mail, label: "roundtable@elevatehub.com", href: "mailto:roundtable@elevatehub.com" },
+  { Icon: MessageCircle, label: "WhatsApp (0810 500 8260)", href: "https://wa.me/2348105008260" },
 ];
 
 export default function Footer() {
@@ -35,16 +34,22 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2.5 mb-4">
               <Image
-                src="/vantage-logo-clean.png"
-                alt="Vantage Forum Logo"
-                width={165}
-                height={52}
+                src="/logo-icon-clean.png"
+                alt="The Elevation Church — Ibadan Round Table Logo"
+                width={40}
+                height={40}
                 unoptimized
-                className="h-11 w-auto object-contain"
               />
+              <span
+                className="text-xl tracking-tight font-semibold"
+                style={{ fontFamily: "'Outfit', sans-serif" }}
+              >
+                ibadan<span className="text-secondary">·</span>
+                <span className="text-secondary">round table</span>
+              </span>
             </div>
             <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
-              <strong>Vantage Forum</strong> hosts the premier Ibadan Business Roundtable for business owners, founders, SME leaders, and investors in Ibadan and its environs — driving sustainable growth, capital access, and high-value partnerships.
+              Hosted by <strong>The Elevation Church, Ibadan</strong>, the Ibadan Business Roundtable brings together business owners, founders, SME leaders, and investors in Ibadan and its environs — driving sustainable growth, wealth creation, and global opportunities.
             </p>
             <a
               href="https://www.google.com/maps/search/?api=1&query=The+Elevation+Church+Mobil+Ring+Road+Energy+Switch+Filling+Station+Ibadan"

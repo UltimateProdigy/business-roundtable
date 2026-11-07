@@ -8,7 +8,10 @@ export interface Speaker {
   role: string;
   image: string;
   isHost?: boolean;
-  talkTitle?: string;
+  badge?: string;
+  sessionFocus: string;
+  talkTitle: string;
+  discussionPoints?: string[];
   shortBio: string;
   fullBio: string[];
 }
@@ -20,13 +23,97 @@ export const speakersList: Speaker[] = [
     role: "Host · Resident Pastor, The Elevation Church, Ibadan",
     image: "/seun-afolayan.jpg",
     isHost: true,
-    talkTitle: "Host & Convener Address — Global Ready: Scaling Businesses, Building Wealth, Expanding Opportunities",
+    badge: "Chief Host",
+    sessionFocus: "Introductory Speech",
+    talkTitle: "Balancing Your Faith and Your Enterprise",
     shortBio:
-      "Pastor Seun Afolayan serves as the Resident Pastor of The Elevation Church, Ibadan, and is the Host of the Ibadan Business Roundtable. Passionate about raising Kingdom-minded leaders and empowering entrepreneurs to build globally competitive enterprises, he convenes business owners across Oyo State for strategic growth, wealth creation, and marketplace impact.",
+      "Seun Afolayan is currently the Resident Pastor of The Elevation Church, Ibadan, and has been a speaker, counsellor, mentor, and pastor for over 20 years. A graduate of FUTA with an MBA from Lagos Business School, he acquired almost a decade's experience in the financial services sector before transitioning to full-time pastoral ministry.",
     fullBio: [
-      "Pastor Seun Afolayan serves as the Resident Pastor of The Elevation Church, Ibadan, and is the Host of the Ibadan Business Roundtable.",
-      "With a deep commitment to raising leaders who excel across both ministry and the marketplace, he champions initiatives that equip entrepreneurs, professionals, and SME founders in Ibadan and its environs with the mindset, networks, and strategic insight required to scale globally competitive businesses.",
-      "Through the Ibadan Business Roundtable (themed 'GLOBAL READY: Scaling Businesses, Building Wealth, Expanding Opportunities'), Pastor Seun Afolayan brings together seasoned industry executives, economists, finance coaches, and innovators to catalyze sustainable wealth creation and expand commercial opportunities across Oyo State.",
+      "Seun Afolayan is currently the Resident Pastor of The Elevation Church, Ibadan. He has been a speaker, counsellor, mentor, and pastor for over 20 years.",
+      "He is a licensed relationship and family life coach and therapist, and a popular social media content creator widely known as \"The Bliss Catalyst\", a platform through which he offers insightful advice on strengthening marital bonds and enjoying fulfilling relationships.",
+      "He is the author of How to Avoid the Biggest Mistake of Your Life - 10 Unpopular Rules for Choosing the Right Spouse. An insightful e-book to help singles to make the right choice of marital partner.",
+      "Seun is a graduate of the Federal University of Technology in Akure and holds an MBA from Lagos Business School. He acquired almost a decade’s experience in the financial services sector before switching to full-time pastoral ministry in 2017.",
+      "He is happily married to Ololade for over 10 years, and they have two lovely girls.",
+    ],
+  },
+  {
+    slug: "joseph-ogebe",
+    name: "Dr. Joseph Ogebe",
+    role: "Head of Research & Development, Nigerian Economic Summit Group (NESG)",
+    image: "/joseph-ogebe.jpg",
+    badge: "Keynote Speaker",
+    sessionFocus: "Nigeria's Economic Outlook for 2027 and Beyond",
+    talkTitle:
+      "Beyond 2027: Reading the Room, Managing the Risks and Positioning for Growth",
+    discussionPoints: [
+      "Nigeria's projected economic direction and key uncertainties in 2027.",
+      "Inflation, interest rates, exchange-rate dynamics, and their business implications.",
+      "Sectors with emerging opportunities and areas requiring caution.",
+      "Consumer behaviour, purchasing power, and changing market demand.",
+      "Implications for employment, income growth, investment, and business planning.",
+      "How businesses and individuals can prepare for different economic scenarios.",
+    ],
+    shortBio:
+      "Dr. Joseph Ogebe is a seasoned development economist and macroeconomic policy expert with over a decade of experience spanning international development, economic research, and private-sector policy analysis. He currently leads high-impact economic reform and development research at the NESG.",
+    fullBio: [
+      "Dr. Joseph Ogebe is a seasoned development economist and macroeconomic policy expert with over a decade of experience spanning international development, economic research, and private-sector policy analysis. He currently serves as Head of Research and Development at the Nigerian Economic Summit Group (NESG), where he leads high-impact research initiatives focused on economic reform, macroeconomic policy, institutional design, and sustainable development in Nigeria.",
+      "At the NESG, Dr. Ogebe oversees strategic research programmes that provide evidence-based policy recommendations to government, private-sector leaders, and development partners. His work strengthens national conversations on economic growth, structural reform, fiscal sustainability, and inclusive development, positioning the NESG as a leading private-sector think tank in Nigeria.",
+      "Prior to joining NESG, Joseph served as a Research Economist at the World Bank, where he supported macroeconomic and structural reform programmes at both federal and subnational levels. His contributions informed the design and implementation of data-driven policies aimed at enhancing economic resilience, public sector performance, and long-term development outcomes in Nigeria.",
+      "Dr. Ogebe holds a Ph.D. in Economics from the University of Ibadan, with expertise in development economics, macroeconomic analysis, and policy evaluation. He has served as an external reviewer for reputable academic journals and has published in leading international journals across development economics, macroeconomics, and public policy analysis.",
+      "With deep expertise in economic research, policy reform, and development strategy, Dr. Joseph Ogebe continues to contribute to advancing evidence-based economic policymaking and sustainable growth in Nigeria and Africa.",
+    ],
+  },
+  {
+    slug: "theophilus-adewale-onadeko",
+    name: "Theophilus Adewale Onadeko, PhD, FCIB",
+    role: "CEO, SWAgCo Limited & Fractional MD, Vantage Forum",
+    image: "/theophilus-onadeko.jpg",
+    badge: "Speaker",
+    sessionFocus: "Business Funding and Sustainable Growth",
+    talkTitle: "From Garage to Global: Unlocking the Right Funding for Growth",
+    discussionPoints: [
+      "Understanding the different sources of business funding.",
+      "What makes a business attractive to banks, investors, and other financiers?",
+      "Building financial records and business systems that inspire confidence.",
+      "Choosing the right funding model for different stages of growth.",
+      "Avoiding common financing mistakes and unsustainable debt.",
+      "Moving from a founder-dependent business to a scalable enterprise.",
+    ],
+    shortBio:
+      "Dr. Theo Adewale Onadeko is a seasoned finance, agribusiness and development executive with over 25 years of experience across corporate strategy, impact investing, SME banking, and agribusiness value chain finance. He is currently the CEO of SWAgCo Limited and Fractional Managing Director of Vantage Forum Ltd/Gte.",
+    fullBio: [
+      "Dr. Theo Adewale Onadeko is a seasoned finance, agribusiness and development executive with over 25 years of experience across corporate strategy, impact investing, SME banking, agribusiness value chain finance, financial technology and management consulting. He is currently the CEO of SWAgCo Limited, the agribusiness vehicle of Odu’a Investment Company Limited, where he leads initiatives advancing sustainable agriculture, food security and value creation across South-West Nigeria. He serves as Fractional Managing Director of Vantage Forum Ltd/Gte, the dynamic global economic development impact vehicle of The Elevation Church, dedicated to raising kingdom-minded leaders for the marketplace, supporting SMEs through access to capacity building, finance and a vibrant community of venture builders.",
+      "As founding Director at Deewal Group, he provides strategic leadership over family-owned impact-oriented investment & advisory vehicles with interests in financial services, real estate, energy, agribusiness and general commerce. He started his banking career at Standard Trust Bank Ltd (later UBA Plc) and had stints at Halifax Bank of Scotland and AXA PPP, both in the United Kingdom. He subsequently held senior roles at International Finance Corporation (World Bank Group), NIRSAL Plc, ARM Group and consulted for Financial Sector Deepening Africa (FSDA), German Development Cooperation (GIZ), Access Bank Plc, and Mandilas Group.",
+      "He holds a PhD in Agricultural Economics & Sustainable Environment from the World Bank Centre of Excellence, Federal University of Agriculture Abeokuta (FUNAAB), MSc in Development Economics & Policy from the University of Manchester; and MBA in Finance from Alliance Manchester Business School, UK. He is a graduate of Agricultural Economics & Farm Management from FUNAAB and a Fellow of the Chartered Institute of Bankers of Nigeria.",
+      "Dr. Onadeko is deeply passionate about Africapitalism - the economic philosophy that the African private sector has the power to transform Africa through long-term investments, creating both economic prosperity and social wealth in a sustainable manner.",
+    ],
+  },
+  {
+    slug: "jimmy-mokikan",
+    name: "Emmanuel (Jimmy) Mokikan",
+    role: "Director of Human Resources, VerifyMe Nigeria",
+    image: "/jimmy-mokikan.jpg",
+    badge: "Speaker",
+    sessionFocus:
+      "Career Growth, Professional Competitiveness and Harnessing Global Opportunities",
+    talkTitle:
+      "The Global-Ready Professional: Value, Visibility and Harnessing Global Opportunities",
+    discussionPoints: [
+      "The difference between being qualified and being competitive.",
+      "Skills employers increasingly value in a changing business environment.",
+      "Building a professional reputation and communicating measurable impact.",
+      "Strategic career positioning, networking, and professional visibility.",
+      "Developing leadership, problem-solving, and commercial awareness.",
+      "Leveraging technology and continuous learning without losing human relevance.",
+      "Positioning for international opportunities while delivering value locally.",
+    ],
+    shortBio:
+      "Jimmy (G-Me) Mokikan is a seasoned Human Resources Executive and leadership mentor with over two decades of experience across banking, fintech, telecommunications, and digital identity services. As Director of HR at VerifyMe Nigeria, he aligns people strategy with business performance in high-growth environments.",
+    fullBio: [
+      "Jimmy (G-Me) Mokikan is a seasoned Human Resources Executive and leadership mentor with over 2 decades of experience across banking, fintech, telecommunications, and digital identity and trust services. He is currently Director of Human Resources at VerifyMe Nigeria, a leading provider of identity verification, background screening, and digital trust solutions that help businesses and institutions make safer, faster decisions about the people and organizations they engage with.",
+      "Jimmy is known for aligning people strategy with business performance in regulated and high growth environments. His expertise spans HR strategy and transformation, organizational design, performance management, reward, talent development, employee relations, and regulatory compliance. He sits on the HR Experts Committee of the Nigeria Employers’ Consultative Association (NECA) and has served as a credentialed delegate to the International Labour Conference in Geneva.",
+      "Beyond the boardroom, Jimmy is passionate about helping professionals find clarity and direction. He leads career and professional development initiatives in his church community and mentors individuals at every career stage, with a practical, structured approach grounded in real life application. He believes leadership is stewardship, built on integrity, accountability, and influence by example.",
+      "He holds an MBA in Human Resources and is a member of the Chartered Institute of Personnel Management of Nigeria (CIPM). He is also an author and speaker on leadership, purpose, and transformation.",
     ],
   },
   {
@@ -34,7 +121,18 @@ export const speakersList: Speaker[] = [
     name: "Tosin Praise-Fowowe",
     role: "Finance Coach & Lead Consultant, TPF Consulting Services",
     image: "/tosin-praise-fowowe.jpg",
-    talkTitle: "Financial Structure, Wealth Creation & Sustainable Business Finance",
+    badge: "Speaker",
+    sessionFocus: "Personal Finance Management, Investment and Wealth Building",
+    talkTitle: "WEALTH WITHOUT BORDERS: Making, Managing and Multiplying Money",
+    discussionPoints: [
+      "Building a personal financial plan around income, goals, and responsibilities.",
+      "Budgeting, saving, emergency funds, and managing debt.",
+      "Understanding investment options, risk, diversification, and time horizons.",
+      "Understanding global markets and how international events affect investments.",
+      "Exploring cross-border investment opportunities and their associated risks.",
+      "Currency exposure, fees, regulation, and fraud prevention.",
+      "Building sustainable wealth rather than pursuing quick financial gains.",
+    ],
     shortBio:
       "Tosin Praise-Fowowe is a renowned finance coach and mentor, specializing in family, individual, and business finance. With over 13 years of experience across both for-profit and non-profit sectors, she empowers individuals and SMEs through financial education, strategy development, and systems optimization as Lead Consultant of TPF Consulting Services.",
     fullBio: [
@@ -48,26 +146,13 @@ export const speakersList: Speaker[] = [
     ],
   },
   {
-    slug: "theophilus-adewale-onadeko",
-    name: "Theophilus Adewale Onadeko, PhD, FCIB",
-    role: "CEO, SWAgCo Limited & Fractional MD, Vantage Forum",
-    image: "/theophilus-onadeko.jpg",
-    talkTitle: "Corporate Strategy, Impact Investing & Value Chain Finance for Scaling SMEs",
-    shortBio:
-      "Dr. Theo Adewale Onadeko is a seasoned finance, agribusiness and development executive with over 25 years of experience across corporate strategy, impact investing, SME banking, and agribusiness value chain finance. He is currently the CEO of SWAgCo Limited and Fractional Managing Director of Vantage Forum Ltd/Gte.",
-    fullBio: [
-      "Dr. Theo Adewale Onadeko is a seasoned finance, agribusiness and development executive with over 25 years of experience across corporate strategy, impact investing, SME banking, agribusiness value chain finance, financial technology and management consulting. He is currently the CEO of SWAgCo Limited, the agribusiness vehicle of Odu’a Investment Company Limited, where he leads initiatives advancing sustainable agriculture, food security and value creation across South-West Nigeria. He serves as Fractional Managing Director of Vantage Forum Ltd/Gte, the dynamic global economic development impact vehicle of The Elevation Church, dedicated to raising kingdom-minded leaders for the marketplace, supporting SMEs through access to capacity building, finance and a vibrant community of venture builders.",
-      "As founding Director at Deewal Group, he provides strategic leadership over family-owned impact-oriented investment & advisory vehicles with interests in financial services, real estate, energy, agribusiness and general commerce. He started his banking career at Standard Trust Bank Ltd (later UBA Plc) and had stints at Halifax Bank of Scotland and AXA PPP, both in the United Kingdom. He subsequently held senior roles at International Finance Corporation (World Bank Group), NIRSAL Plc, ARM Group and consulted for Financial Sector Deepening Africa (FSDA), German Development Cooperation (GIZ), Access Bank Plc, and Mandilas Group.",
-      "He holds a PhD in Agricultural Economics & Sustainable Environment from the World Bank Centre of Excellence, Federal University of Agriculture Abeokuta (FUNAAB), MSc in Development Economics & Policy from the University of Manchester; and MBA in Finance from Alliance Manchester Business School, UK. He is a graduate of Agricultural Economics & Farm Management from FUNAAB and a Fellow of the Chartered Institute of Bankers of Nigeria.",
-      "Dr. Onadeko is deeply passionate about Africapitalism - the economic philosophy that the African private sector has the power to transform Africa through long-term investments, creating both economic prosperity and social wealth in a sustainable manner.",
-    ],
-  },
-  {
     slug: "lanre-olokunde",
-    name: "Lanre Olokunde",
+    name: "Olanrewaju (Lanre) Olokunde",
     role: "Managing Partner, Voranex Africa & Resident Pastor, TEC FESTAC",
     image: "/lanre-olokunde.jpg",
-    talkTitle: "Leveraging AI & Emerging Technology to Build Globally Ready Businesses",
+    badge: "Speaker",
+    sessionFocus: "Leveraging AI for Growth",
+    talkTitle: "Leveraging Artificial Intelligence for Multiplied Productivity",
     shortBio:
       "Lanre Olokunde is a visionary leader and technology strategist who operates at the unique intersection of innovation and faith. A distinguished expert in enterprise AI solutions and Managing Partner at Voranex Africa, he is focused on building the most trusted African operating layer for global businesses.",
     fullBio: [
@@ -78,42 +163,14 @@ export const speakersList: Speaker[] = [
     ],
   },
   {
-    slug: "joseph-ogebe",
-    name: "Dr. Joseph Ogebe",
-    role: "Head of Research & Development, Nigerian Economic Summit Group (NESG)",
-    image: "/joseph-ogebe.jpg",
-    talkTitle: "Macroeconomic Outlook, Policy Reform & Expanding Market Opportunities",
-    shortBio:
-      "Dr. Joseph Ogebe is a seasoned development economist and macroeconomic policy expert with over a decade of experience spanning international development, economic research, and private-sector policy analysis. He currently leads high-impact economic reform and development research at the NESG.",
-    fullBio: [
-      "Dr. Joseph Ogebe is a seasoned development economist and macroeconomic policy expert with over a decade of experience spanning international development, economic research, and private-sector policy analysis. He currently serves as Head of Research and Development at the Nigerian Economic Summit Group (NESG), where he leads high-impact research initiatives focused on economic reform, macroeconomic policy, institutional design, and sustainable development in Nigeria.",
-      "At the NESG, Dr. Ogebe oversees strategic research programmes that provide evidence-based policy recommendations to government, private-sector leaders, and development partners. His work strengthens national conversations on economic growth, structural reform, fiscal sustainability, and inclusive development, positioning the NESG as a leading private-sector think tank in Nigeria.",
-      "Prior to joining NESG, Joseph served as a Research Economist at the World Bank, where he supported macroeconomic and structural reform programmes at both federal and subnational levels. His contributions informed the design and implementation of data-driven policies aimed at enhancing economic resilience, public sector performance, and long-term development outcomes in Nigeria.",
-      "Dr. Ogebe holds a Ph.D. in Economics from the University of Ibadan, with expertise in development economics, macroeconomic analysis, and policy evaluation. He has served as an external reviewer for reputable academic journals and has published in leading international journals across development economics, macroeconomics, and public policy analysis.",
-      "With deep expertise in economic research, policy reform, and development strategy, Dr. Joseph Ogebe continues to contribute to advancing evidence-based economic policymaking and sustainable growth in Nigeria and Africa.",
-    ],
-  },
-  {
-    slug: "jimmy-mokikan",
-    name: "Jimmy (G-Me) Mokikan",
-    role: "Director of Human Resources, VerifyMe Nigeria",
-    image: "/jimmy-mokikan.jpg",
-    talkTitle: "People Strategy, Organizational Design & High-Performance Culture",
-    shortBio:
-      "Jimmy (G-Me) Mokikan is a seasoned Human Resources Executive and leadership mentor with over two decades of experience across banking, fintech, telecommunications, and digital identity services. As Director of HR at VerifyMe Nigeria, he aligns people strategy with business performance in high-growth environments.",
-    fullBio: [
-      "Jimmy (G-Me) Mokikan is a seasoned Human Resources Executive and leadership mentor with over 2 decades of experience across banking, fintech, telecommunications, and digital identity and trust services. He is currently Director of Human Resources at VerifyMe Nigeria, a leading provider of identity verification, background screening, and digital trust solutions that help businesses and institutions make safer, faster decisions about the people and organizations they engage with.",
-      "Jimmy is known for aligning people strategy with business performance in regulated and high growth environments. His expertise spans HR strategy and transformation, organizational design, performance management, reward, talent development, employee relations, and regulatory compliance. He sits on the HR Experts Committee of the Nigeria Employers’ Consultative Association (NECA) and has served as a credentialed delegate to the International Labour Conference in Geneva.",
-      "Beyond the boardroom, Jimmy is passionate about helping professionals find clarity and direction. He leads career and professional development initiatives in his church community and mentors individuals at every career stage, with a practical, structured approach grounded in real life application. He believes leadership is stewardship, built on integrity, accountability, and influence by example.",
-      "He holds an MBA in Human Resources and is a member of the Chartered Institute of Personnel Management of Nigeria (CIPM). He is also an author and speaker on leadership, purpose, and transformation.",
-    ],
-  },
-  {
     slug: "adebola-esther-santos",
     name: "Mrs Adebola Esther Santos",
     role: "Founder & CEO, RecycleGarb Hub Limited | Entrepreneur & Circular Economy Advocate",
     image: "/adebola-santos.jpg",
-    talkTitle: "Building Sustainable Enterprises, Circular Economy & International Agro-Trade",
+    badge: "Speaker",
+    sessionFocus: "Export Process for Small Business Owners",
+    talkTitle:
+      "Build Locally Earn Globally: The ABC of Exporting Your Products Outside the Country",
     shortBio:
       "Mrs Adebola Santos is a Nigerian entrepreneur with experience spanning banking, environmental sustainability, circular economy, food processing, and international agro-commodity trade. As Founder & CEO of RecycleGarb Hub Limited, she has facilitated the recovery and recycling of over 5,000 tons of plastic waste.",
     fullBio: [
@@ -128,10 +185,13 @@ export const speakersList: Speaker[] = [
   },
   {
     slug: "akinola-ayobami",
-    name: "Akinola Ayobami",
+    name: "Ayobami Akinola",
     role: "Founder, BeaconHub & ElevateHub | Software Engineer & Entrepreneur",
     image: "/ayobami.jpeg",
-    talkTitle: "Digital Systems, Data Compliance & Tech-Enabled Business Growth",
+    badge: "Speaker",
+    sessionFocus: "Tech Community & Career Launchpad",
+    talkTitle:
+      "Elevate Community Hub: The Perfect Launch Pad for Your Tech Career",
     shortBio:
       "Akinola Ayobami is a software engineer and entrepreneur, and the founder of BeaconHub, a software development agency building web and mobile products for businesses and organizations. With over five years of experience, he has delivered fintech platforms, booking systems, and data compliance tools while growing the tech ecosystem in Oyo State.",
     fullBio: [
@@ -153,7 +213,7 @@ export default function SpeakersSection() {
               Meet the <span className="text-primary">Host & Speakers</span>
             </h2>
             <p className="mt-4 text-slate-500 text-lg">
-              Learn directly from Pastor Seun Afolayan and accomplished industry leaders, finance experts, and enterprise builders at the Ibadan Business Roundtable.
+              Learn directly from Pastor Seun Afolayan and accomplished industry leaders, economists, finance experts, and enterprise builders at the Ibadan Business Roundtable.
             </p>
           </div>
 
@@ -165,7 +225,7 @@ export default function SpeakersSection() {
           </Link>
         </div>
 
-        {/* Speakers Grid — Uniform Card Heights */}
+        {/* Speakers Grid — Uniform Card Heights with Topic & Bio */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {speakersList.map((speaker) => (
             <div
@@ -173,6 +233,8 @@ export default function SpeakersSection() {
               className={`rounded-3xl overflow-hidden border transition-all duration-300 flex flex-col h-full group ${
                 speaker.isHost
                   ? "bg-gradient-to-b from-primary-light/50 to-white border-primary/50 shadow-md hover:shadow-xl"
+                  : speaker.badge === "Keynote Speaker"
+                  ? "bg-gradient-to-b from-secondary-light/60 to-white border-secondary/50 shadow-md hover:shadow-xl"
                   : "bg-slate-50 border-slate-200/80 shadow-xs hover:shadow-xl hover:border-primary/40"
               }`}
             >
@@ -190,17 +252,19 @@ export default function SpeakersSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-60" />
 
-                {/* Host or Speaker Badge */}
+                {/* Host / Keynote / Speaker Badge */}
                 <div className="absolute top-3.5 left-3.5">
                   <span
                     className={`inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm ${
                       speaker.isHost
                         ? "bg-secondary text-white"
+                        : speaker.badge === "Keynote Speaker"
+                        ? "bg-primary text-white"
                         : "bg-slate-900/80 backdrop-blur-md text-white border border-white/20"
                     }`}
                   >
                     <Mic size={11} />
-                    {speaker.isHost ? "Chief Host" : "Speaker"}
+                    {speaker.badge || "Speaker"}
                   </span>
                 </div>
               </Link>
@@ -209,14 +273,25 @@ export default function SpeakersSection() {
               <div className="p-6 flex flex-col flex-1 justify-between">
                 <div>
                   <Link href={`/speakers/${speaker.slug}`}>
-                    <h3 className="text-xl text-slate-900 tracking-tight mb-1.5 group-hover:text-primary transition-colors line-clamp-1">
+                    <h3 className="text-xl text-slate-900 tracking-tight mb-1 group-hover:text-primary transition-colors line-clamp-1">
                       {speaker.name}
                     </h3>
                   </Link>
                   <p className="text-xs font-bold uppercase tracking-wider text-primary mb-3 min-h-[2rem] line-clamp-2">
                     {speaker.role}
                   </p>
-                  <p className="text-slate-600 text-sm leading-relaxed line-clamp-5 min-h-[7.5rem]">
+
+                  {/* Session Focus & Talk Topic Pill Box (Uniform Height) */}
+                  <div className="bg-white rounded-2xl p-3.5 border border-slate-200/80 mb-3.5 min-h-[6.25rem] flex flex-col justify-center">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-secondary block mb-1 line-clamp-1">
+                      {speaker.sessionFocus}
+                    </span>
+                    <p className="text-xs font-bold text-slate-900 leading-snug line-clamp-3">
+                      &ldquo;{speaker.talkTitle}&rdquo;
+                    </p>
+                  </div>
+
+                  <p className="text-slate-600 text-sm leading-relaxed line-clamp-4 min-h-[5.75rem]">
                     {speaker.shortBio}
                   </p>
                 </div>

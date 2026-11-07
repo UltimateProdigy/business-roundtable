@@ -25,8 +25,8 @@ export async function generateMetadata({
     return { title: "Speaker Not Found — Ibadan Business Roundtable" };
   }
   return {
-    title: `${speaker.name} — Speaker Profile | Ibadan Business Roundtable`,
-    description: speaker.shortBio,
+    title: `${speaker.name} — ${speaker.talkTitle} | Ibadan Business Roundtable`,
+    description: `${speaker.sessionFocus}: ${speaker.talkTitle}. ${speaker.shortBio}`,
   };
 }
 
@@ -69,7 +69,7 @@ export default async function SpeakerDetailPage({
           <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/40 rounded-full px-3.5 py-1 mb-3 ml-4">
             <span className="w-2 h-2 rounded-full bg-secondary" />
             <span className="text-white text-xs font-semibold uppercase tracking-widest">
-              {speaker.isHost ? "Chief Host Profile" : "Speaker Profile"}
+              {speaker.badge || "Speaker Profile"}
             </span>
           </div>
 
@@ -107,7 +107,7 @@ export default async function SpeakerDetailPage({
                   <div className="flex items-center gap-2 text-xs text-slate-500 mb-6">
                     <CheckCircle2 size={15} className="text-secondary flex-shrink-0" />
                     <span>
-                      {speaker.isHost ? "Chief Host" : "Featured Speaker"} · Ibadan Business Roundtable 2026
+                      {speaker.badge || "Featured Speaker"} · Ibadan Business Roundtable 2026
                     </span>
                   </div>
                   <Link
@@ -120,27 +120,56 @@ export default async function SpeakerDetailPage({
               </div>
             </div>
 
-            {/* Right 7 Columns: Talk Title + Full Biography */}
+            {/* Right 7 Columns: Talk Title + Discussion Points + Full Biography */}
             <div className="lg:col-span-7">
               {/* First Line Above Profile: Title of Their Talk at the Event */}
-              {speaker.talkTitle && (
-                <div className="bg-gradient-to-r from-primary-light/80 to-secondary-light/60 border-l-4 border-primary rounded-r-2xl p-5 sm:p-6 mb-8">
-                  <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-secondary-dark mb-1.5">
-                    <Mic size={14} className="text-secondary" />
-                    <span>Session / Talk Title at the Event</span>
-                  </div>
-                  <p className="text-lg sm:text-xl font-extrabold text-slate-900 leading-snug">
-                    &ldquo;{speaker.talkTitle}&rdquo;
-                  </p>
+              <div className="bg-gradient-to-br from-primary-light/70 via-white to-secondary-light/60 border border-primary/30 border-l-4 border-l-primary rounded-2xl p-6 sm:p-8 mb-10 shadow-xs">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="inline-flex items-center gap-1.5 bg-secondary text-white text-[11px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">
+                    <Mic size={12} />
+                    Session Focus
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-primary-dark uppercase tracking-wider">
+                    {speaker.sessionFocus}
+                  </span>
                 </div>
-              )}
+
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mt-4 mb-1">
+                  Topic at the Event
+                </p>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 leading-snug">
+                  &ldquo;{speaker.talkTitle}&rdquo;
+                </h2>
+
+                {speaker.discussionPoints && speaker.discussionPoints.length > 0 && (
+                  <div className="mt-6 pt-5 border-t border-slate-200/80">
+                    <p className="text-xs font-extrabold uppercase tracking-widest text-secondary-dark mb-3">
+                      Key Discussion Points
+                    </p>
+                    <ul className="space-y-2.5">
+                      {speaker.discussionPoints.map((point) => (
+                        <li
+                          key={point}
+                          className="flex items-start gap-2.5 text-sm sm:text-base text-slate-700 leading-relaxed"
+                        >
+                          <CheckCircle2
+                            size={17}
+                            className="text-primary flex-shrink-0 mt-0.5"
+                          />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
 
               <span className="inline-block text-secondary text-xs font-bold uppercase tracking-widest mb-3">
                 Biography & Background
               </span>
-              <h2 className="text-3xl sm:text-4xl text-slate-900 mb-6">
+              <h3 className="text-3xl sm:text-4xl text-slate-900 mb-6">
                 About <span className="text-primary">{speaker.name}</span>
-              </h2>
+              </h3>
 
               <div className="space-y-5 text-slate-600 text-base sm:text-lg leading-relaxed">
                 {speaker.fullBio.map((paragraph, index) => (
@@ -217,8 +246,8 @@ export default async function SpeakerDetailPage({
                     <h3 className="text-lg text-slate-900 truncate group-hover:text-primary transition-colors">
                       {other.name}
                     </h3>
-                    <p className="text-xs font-semibold text-slate-500 line-clamp-2 mt-0.5">
-                      {other.role}
+                    <p className="text-xs font-semibold text-primary line-clamp-1 mt-0.5">
+                      {other.talkTitle}
                     </p>
                     <span className="inline-flex items-center gap-1 text-xs font-bold text-secondary mt-1.5">
                       View Profile <ArrowRight size={12} />
