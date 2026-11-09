@@ -314,9 +314,9 @@ export default function AdminDashboardClient() {
       <div className="md:hidden bg-slate-900 border-b border-slate-800 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
         <div className="flex items-center gap-2.5">
           <img
-            src="/logo-icon-clean.png"
-            alt="Ibadan Business Roundtable Logo"
-            className="w-8 h-8 object-contain"
+            src="/tec-ibadan-icon.png"
+            alt="The Elevation Church Ibadan Logo"
+            className="w-9 h-9 object-contain"
           />
           <div className="flex flex-col leading-none">
             <span className="font-extrabold text-sm text-white tracking-tight">
@@ -348,9 +348,9 @@ export default function AdminDashboardClient() {
           <div className="p-6 border-b border-slate-800 hidden md:block">
             <div className="flex items-center gap-3 mb-2">
               <img
-                src="/logo-icon-clean.png"
-                alt="Ibadan Business Roundtable Logo"
-                className="w-9 h-9 object-contain"
+                src="/tec-ibadan-icon.png"
+                alt="The Elevation Church Ibadan Logo"
+                className="w-10 h-10 object-contain"
               />
               <div className="flex flex-col leading-none">
                 <span className="text-base font-extrabold text-white tracking-tight">

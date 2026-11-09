@@ -34,11 +34,12 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <Image
-                src="/logo-icon-clean.png"
-                alt="Ibadan Business Roundtable Logo"
-                width={42}
-                height={42}
+                src="/tec-ibadan-icon.png"
+                alt="The Elevation Church Ibadan Logo"
+                width={44}
+                height={44}
                 unoptimized
+                className="drop-shadow-sm"
               />
               <div className="flex flex-col leading-none">
                 <span className="text-lg font-extrabold tracking-tight text-white">

@@ -53,12 +53,12 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
             <div className="relative flex items-center justify-center">
               <Image
-                src="/logo-icon-clean.png"
-                alt="Ibadan Business Roundtable Logo"
-                width={38}
-                height={38}
+                src="/tec-ibadan-icon.png"
+                alt="The Elevation Church Ibadan Logo"
+                width={42}
+                height={42}
                 unoptimized
-                className="group-hover:scale-105 transition-transform duration-300"
+                className="group-hover:scale-105 transition-transform duration-300 drop-shadow-sm"
               />
             </div>
             <div className="flex flex-col leading-none">
@@ -73,7 +73,7 @@ export default function Navbar() {
                 </span>
               </span>
               <span className="flex items-center gap-1.5 mt-1">
-                <span className="w-3 h-[2px] rounded-full bg-secondary" />
+                <span className="w-3.5 h-[2px] rounded-full bg-secondary" />
                 <span
                   className={`text-[10px] font-extrabold uppercase tracking-[0.22em] ${
                     isGlass ? "text-secondary" : "text-secondary-dark"

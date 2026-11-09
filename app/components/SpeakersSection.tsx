@@ -65,7 +65,7 @@ export const speakersList: Speaker[] = [
   },
   {
     slug: "theophilus-adewale-onadeko",
-    name: "Theophilus Adewale Onadeko, PhD, FCIB",
+    name: "Dr Theophilus Adewale Onadeko, PhD, FCIB",
     role: "CEO, SWAgCo Limited & Fractional MD, Vantage Forum",
     image: "/theophilus-onadeko.jpg",
     badge: "Speaker",
@@ -90,7 +90,7 @@ export const speakersList: Speaker[] = [
   },
   {
     slug: "jimmy-mokikan",
-    name: "Emmanuel (Jimmy) Mokikan",
+    name: "Emmanuel Mokikan",
     role: "Director of Human Resources, VerifyMe Nigeria",
     image: "/jimmy-mokikan.jpg",
     badge: "Speaker",
@@ -108,9 +108,9 @@ export const speakersList: Speaker[] = [
       "Positioning for international opportunities while delivering value locally.",
     ],
     shortBio:
-      "Jimmy (G-Me) Mokikan is a seasoned Human Resources Executive and leadership mentor with over two decades of experience across banking, fintech, telecommunications, and digital identity services. As Director of HR at VerifyMe Nigeria, he aligns people strategy with business performance in high-growth environments.",
+      "Jimmy Mokikan is a seasoned Human Resources Executive and leadership mentor with over two decades of experience across banking, fintech, telecommunications, and digital identity services. As Director of HR at VerifyMe Nigeria, he aligns people strategy with business performance in high-growth environments.",
     fullBio: [
-      "Jimmy (G-Me) Mokikan is a seasoned Human Resources Executive and leadership mentor with over 2 decades of experience across banking, fintech, telecommunications, and digital identity and trust services. He is currently Director of Human Resources at VerifyMe Nigeria, a leading provider of identity verification, background screening, and digital trust solutions that help businesses and institutions make safer, faster decisions about the people and organizations they engage with.",
+      "Jimmy Mokikan is a seasoned Human Resources Executive and leadership mentor with over 2 decades of experience across banking, fintech, telecommunications, and digital identity and trust services. He is currently Director of Human Resources at VerifyMe Nigeria, a leading provider of identity verification, background screening, and digital trust solutions that help businesses and institutions make safer, faster decisions about the people and organizations they engage with.",
       "Jimmy is known for aligning people strategy with business performance in regulated and high growth environments. His expertise spans HR strategy and transformation, organizational design, performance management, reward, talent development, employee relations, and regulatory compliance. He sits on the HR Experts Committee of the Nigeria Employers’ Consultative Association (NECA) and has served as a credentialed delegate to the International Labour Conference in Geneva.",
       "Beyond the boardroom, Jimmy is passionate about helping professionals find clarity and direction. He leads career and professional development initiatives in his church community and mentors individuals at every career stage, with a practical, structured approach grounded in real life application. He believes leadership is stewardship, built on integrity, accountability, and influence by example.",
       "He holds an MBA in Human Resources and is a member of the Chartered Institute of Personnel Management of Nigeria (CIPM). He is also an author and speaker on leadership, purpose, and transformation.",
@@ -164,7 +164,7 @@ export const speakersList: Speaker[] = [
   },
   {
     slug: "adebola-esther-santos",
-    name: "Mrs Adebola Esther Santos",
+    name: "Adebola Esther Santos",
     role: "Founder & CEO, RecycleGarb Hub Limited | Entrepreneur & Circular Economy Advocate",
     image: "/adebola-santos.jpg",
     badge: "Speaker",
@@ -172,9 +172,9 @@ export const speakersList: Speaker[] = [
     talkTitle:
       "Build Locally Earn Globally: The ABC of Exporting Your Products Outside the Country",
     shortBio:
-      "Mrs Adebola Santos is a Nigerian entrepreneur with experience spanning banking, environmental sustainability, circular economy, food processing, and international agro-commodity trade. As Founder & CEO of RecycleGarb Hub Limited, she has facilitated the recovery and recycling of over 5,000 tons of plastic waste.",
+      "Adebola Santos is a Nigerian entrepreneur with experience spanning banking, environmental sustainability, circular economy, food processing, and international agro-commodity trade. As Founder & CEO of RecycleGarb Hub Limited, she has facilitated the recovery and recycling of over 5,000 tons of plastic waste.",
     fullBio: [
-      "Mrs Adebola Santos is a Nigerian entrepreneur with experience spanning banking, environmental sustainability, circular economy, food processing, and international agro-commodity trade.",
+      "Adebola Santos is a Nigerian entrepreneur with experience spanning banking, environmental sustainability, circular economy, food processing, and international agro-commodity trade.",
       "She began her professional career in the banking sector in 2012, gaining over six years of experience in banking and customer relationship management, while serving in various supervisory roles before resigning in 2018 to focus on entrepreneurship and environmental sustainability.",
       "She is the Founder and CEO of RecycleGarb Hub Limited, an environmental and circular economy enterprise established in 2018. Under her leadership, RecycleGarb has facilitated the recovery and recycling of over 5,000 tons of plastic waste, including the aggregation, processing, and export of recyclable plastic waste. The company also promotes community-based waste recovery, recycling education, and sustainable livelihood opportunities.",
       "Adebola is the driving force behind initiatives such as Waste4Sch, EcoCredit, and Waste4Food, which leverage recyclable waste to support education, financial inclusion, and food security for underserved communities. She is also the convener of Ibadan Goes Green and a facilitator under the GST Entrepreneurship Programme at Lead City University, where she trains students in entrepreneurship and sustainability. She has trained and mentored over 1,000 aspiring entrepreneurs and recycling practitioners.",
@@ -225,7 +225,6 @@ export default function SpeakersSection() {
           </Link>
         </div>
 
-        {/* Speakers Grid — Uniform Card Heights with Topic & Bio */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {speakersList.map((speaker) => (
             <div
