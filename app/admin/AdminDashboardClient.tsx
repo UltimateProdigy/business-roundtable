@@ -312,23 +312,12 @@ export default function AdminDashboardClient() {
     <div className="min-h-screen bg-slate-950 flex flex-col md:flex-row text-slate-100">
       {/* Mobile Header */}
       <div className="md:hidden bg-slate-900 border-b border-slate-800 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center">
           <img
-            src="/tec-ibadan-icon.png"
+            src="/tec-ibadan-logo-white.png"
             alt="The Elevation Church Ibadan Logo"
-            className="w-9 h-9 object-contain"
+            className="h-8 w-auto object-contain"
           />
-          <div className="flex flex-col leading-none">
-            <span className="font-extrabold text-sm text-white tracking-tight">
-              Ibadan <span className="text-primary">Business</span>
-            </span>
-            <span className="flex items-center gap-1 mt-0.5">
-              <span className="w-2.5 h-[2px] rounded-full bg-secondary" />
-              <span className="text-[9px] font-extrabold uppercase tracking-[0.2em] text-secondary">
-                Roundtable
-              </span>
-            </span>
-          </div>
         </div>
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -346,23 +335,12 @@ export default function AdminDashboardClient() {
       >
         <div>
           <div className="p-6 border-b border-slate-800 hidden md:block">
-            <div className="flex items-center gap-3 mb-2">
+            <div className="flex items-center mb-2">
               <img
-                src="/tec-ibadan-icon.png"
+                src="/tec-ibadan-logo-white.png"
                 alt="The Elevation Church Ibadan Logo"
-                className="w-10 h-10 object-contain"
+                className="h-10 w-auto object-contain"
               />
-              <div className="flex flex-col leading-none">
-                <span className="text-base font-extrabold text-white tracking-tight">
-                  Ibadan <span className="text-primary">Business</span>
-                </span>
-                <span className="flex items-center gap-1.5 mt-1">
-                  <span className="w-3 h-[2px] rounded-full bg-secondary" />
-                  <span className="text-[9px] font-extrabold uppercase tracking-[0.2em] text-secondary">
-                    Roundtable
-                  </span>
-                </span>
-              </div>
             </div>
             <p className="text-xs uppercase font-bold tracking-wider text-slate-400 mt-2">
               Secretariat Control Center

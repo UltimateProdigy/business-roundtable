@@ -50,39 +50,16 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16 gap-6">
           {/* ── Logo (left) ── */}
-          <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
-            <div className="relative flex items-center justify-center">
-              <Image
-                src="/tec-ibadan-icon.png"
-                alt="The Elevation Church Ibadan Logo"
-                width={42}
-                height={42}
-                unoptimized
-                className="group-hover:scale-105 transition-transform duration-300 drop-shadow-sm"
-              />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span
-                className={`text-[15px] sm:text-base font-extrabold tracking-tight transition-colors duration-300 ${
-                  isGlass ? "text-white" : "text-slate-900"
-                }`}
-              >
-                Ibadan{" "}
-                <span className={isGlass ? "text-primary" : "text-primary"}>
-                  Business
-                </span>
-              </span>
-              <span className="flex items-center gap-1.5 mt-1">
-                <span className="w-3.5 h-[2px] rounded-full bg-secondary" />
-                <span
-                  className={`text-[10px] font-extrabold uppercase tracking-[0.22em] ${
-                    isGlass ? "text-secondary" : "text-secondary-dark"
-                  }`}
-                >
-                  Roundtable
-                </span>
-              </span>
-            </div>
+          <Link href="/" className="flex items-center flex-shrink-0 group py-1">
+            <Image
+              src={isGlass ? "/tec-ibadan-logo-white.png" : "/tec-ibadan-logo.png"}
+              alt="The Elevation Church Ibadan Logo"
+              width={160}
+              height={50}
+              unoptimized
+              priority
+              className="h-10 sm:h-11 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+            />
           </Link>
 
           {/* ── Nav Links (center) ── */}

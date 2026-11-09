@@ -32,26 +32,15 @@ export default function Footer() {
         <div className="py-14 grid md:grid-cols-3 gap-10 border-b border-white/10">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center mb-4">
               <Image
-                src="/tec-ibadan-icon.png"
+                src="/tec-ibadan-logo-white.png"
                 alt="The Elevation Church Ibadan Logo"
-                width={44}
-                height={44}
+                width={175}
+                height={55}
                 unoptimized
-                className="drop-shadow-sm"
+                className="h-11 w-auto object-contain"
               />
-              <div className="flex flex-col leading-none">
-                <span className="text-lg font-extrabold tracking-tight text-white">
-                  Ibadan <span className="text-primary">Business</span>
-                </span>
-                <span className="flex items-center gap-1.5 mt-1">
-                  <span className="w-3.5 h-[2px] rounded-full bg-secondary" />
-                  <span className="text-[10px] font-extrabold uppercase tracking-[0.22em] text-secondary">
-                    Roundtable
-                  </span>
-                </span>
-              </div>
             </div>
             <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
               Hosted by <strong>The Elevation Church, Ibadan</strong>, the Ibadan Business Roundtable brings together business owners, founders, SME leaders, and investors in Ibadan and its environs — driving sustainable growth, wealth creation, and global opportunities.
